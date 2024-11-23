@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MKT_NEUROPHET SCALE MRA</title>
+    <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <style>
+        :root {
+            --base-3: #282828;
+            --base-grey: #383838;
+            --white: #ffffff;
+            --ui-1: #1077fe;
+            --ui-6: #1e1e1e;
+            --opacity-6: rgba(255, 255, 255, 0.2);
+            --opacity-7: rgba(255, 255, 255, 0.1);
+            --opacity-8: rgba(255, 255, 255, 0.05);
+            --whitedisabled: rgba(255, 255, 255, 0.2);
+            --border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Spoqa Han Sans Neo", sans-serif;
+            color: var(--white);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            background: var(--base-3);
+        }
+
+        .access-bar {
+            display: flex;
+            width: 100%;
+        }
+
+        .access-bar-leftside {}
+
+        .access-bar-rtside {}
+        .main-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .access-bar {
+            display: flex;
+
+            height: 50px;
+            position: sticky;
+            background: var(--base-grey);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .section-menu {
+            cursor: pointer;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .section-menu:hover,
+        .section-menu.active {
+            background-color: var(--opacity-7);
+            font-weight: bold;
+        }
+
+        .text-field {
+            background: var(--ui-6);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .text-field input {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            background: none;
+            border: none;
+            color: var(--white);
+        }
+
+        .button,
+        .button2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 3px;
+            height: 40px;
+            min-width: 100px;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .button {
+            background: var(--opacity-7);
+            border: 1px solid var(--opacity-8);
+            color: var(--whitedisabled);
+        }
+
+        .button2 {
+            background: var(--ui-1);
+            color: var(--white);
+        }
+
+        .button:hover,
+        .button2:hover {
+            transform: translateY(-2px);
+        }
+
+        .button:active,
+        .button2:active {
+            transform: translateY(1px);
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: auto 60px 80px repeat(11, 1fr);
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+        .grid-header,
+        .grid-row {
+            display: contents;
+        }
+
+        .header-item,
+        .row-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--opacity-6);
+        }
+
+        .header-item {
+            background-color: var(--base-grey);
+            position: relative;
+        }
+
+        .header-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 16px;
+            background: var(--opacity-6);
+        }
+
+        @media (max-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: auto 50px 70px repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="access-bar">
+        <div class="access-bar-leftside">
+            <img src="img/Product Logo.png" alt="Product Logo">
+            <nav>
+                <div class="section-menu active">Analysis</div>
+                <div class="section-menu">Queue (1)</div>
+            </nav>
+        </div>
+        <div class="access-bar-rtside">
+            <img src="img/windowbtn.png" alt="Window Controls">
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section>
+            <h1>Analysis</h1>
+            <div class="button-container">
+                <button class="button">
+                    <img src="img/icon_export.png" alt="Export icon">
+                    <span>Export</span>
+                </button>
+                <button class="button2">
+                    <img src="img/icon_Plus.png" alt="Plus icon">
+                    <span>New Analysis</span>
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <div class="text-field">
+                <img src="img/icon_Search.png" alt="Search icon">
+                <input type="text" placeholder="Enter patient ID or name">
+            </div>
+            <div>Total analysis: 3</div>
+        </section>
+
+        <section class="analysis-grid">
+            <div class="grid-header">
+                <div class="header-item">
+                    <input type="checkbox" id="select-all">
+                </div>
+                <div class="header-item">ID</div>
+                <div class="header-item">Mode</div>
+                <div class="header-item">Patient ID</div>
+                <div class="header-item">Patient Name</div>
+                <div class="header-item">Sex</div>
+                <div class="header-item">Date of Birth (Age)</div>
+                <div class="header-item">AI Result</div>
+                <div class="header-item">Scan Date (Age)</div>
+                <div class="header-item">Action</div>
+                <div class="header-item">Image Format</div>
+                <div class="header-item">Status</div>
+                <div class="header-item">Analysis Completed</div>
+                <div class="header-item">Memo</div>
+            </div>
+            <div id="grid-body"></div>
+        </section>
+    </main>
+
+    <script>
+        const gridData = [
+            { id: 3, patientId: '19900429', name: '이뉴로', sex: 'Female', dob: '1962-01-15', age: 68, aiResult: '-', scanDate: '2022-07-25', scanAge: 66, imageFormat: 'DICOM', status: 'In Queue', completed: '-' },
+            { id: 2, patientId: '19900429', name: '김뉴로', sex: 'Male', dob: '1958-03-23', age: 66, aiResult: '-', scanDate: '2021-08-22', scanAge: 63, imageFormat: 'DICOM', status: 'In Progress', completed: '-' },
+            { id: 1, patientId: '19900429', name: '이뉴로', sex: 'Female', dob: '1962-01-15', age: 68, aiResult: 'Suspected', scanDate: '2022-05-01', scanAge: 66, imageFormat: 'DICOM', status: 'Completed', completed: '2024-01-01 10:52' }
+        ];
+
+        function createGridRow(data) {
+            return `
+                <div class="grid-row">
+                    <div class="row-item"><input type="checkbox" class="row-checkbox"></div>
+                    <div class="row-item">${data.id}</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">${data.patientId}</div>
+                    <div class="row-item">${data.name}</div>
+                    <div class="row-item">${data.sex}</div>
+                    <div class="row-item">${data.dob} (${data.age})</div>
+                    <div class="row-item">${data.aiResult}</div>
+                    <div class="row-item">${data.scanDate} (${data.scanAge})</div>
+                    <div class="row-item">
+                        ${data.status === 'Completed' ? `
+                            <img src="img/icon_Viewer.png" alt="View">
+                            <img src="img/icon_export.png" alt="Export">
+                            <img src="img/icon_Edit.png" alt="Edit">
+                            <img src="img/icon_Delete.png" alt="Delete">
+                        ` : '<img src="img/icon_Edit.png" alt="Edit">'}
+                    </div>
+                    <div class="row-item">${data.imageFormat}</div>
+                    <div class="row-item">${data.status}</div>
+                    <div class="row-item">${data.completed}</div>
+                    <div class="row-item"></div>
+                </div>
+            `;
+        }
+
+        function populateGrid() {
+            const gridBody = document.getElementById('grid-body');
+            gridData.forEach(data => {
+                gridBody.insertAdjacentHTML('beforeend', createGridRow(data));
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateGrid();
+
+            const selectAllCheckbox = document.getElementById('select-all');
+            selectAllCheckbox.addEventListener('change', () => {
+                document.querySelectorAll('.row-checkbox').forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+
+            document.querySelectorAll('.section-menu').forEach(menu => {
+                menu.addEventListener('click', () => {
+                    document.querySelector('.section-menu.active').classList.remove('active');
+                    menu.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

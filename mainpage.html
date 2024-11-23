@@ -31,24 +31,22 @@
             <img src="img/windowbtn.png" alt="Window Controls">
         </div>
     </header>
-
     <main class="main-content">
         <section class="content01">
             <div class="frame-lt">
                 <h1 class="h1">Analysis</h1>
             </div>
             <div class="frame-rt">
-                <button class="button">
+                <button class="button" title="Export analysis results">
                     <img src="img/icon_export.png" alt="Export icon">
                     <span class="text-disable">Export</span>
                 </button>
-                <button class="button2">
+                <button class="button2" title="Start new analysis">
                     <img src="img/icon_Plus.png" alt="Plus icon">
                     <span class="text2">New Analysis</span>
                 </button>
             </div>
         </section>
-
         <section class="content02">
             <div class="frame-02">
                 <div class="text-field">
@@ -58,8 +56,6 @@
             </div>
             <div class="frame-03">Total analysis: 3</div>
         </section>
-
-
         <section class="content03">
             <div class="analysis-grid">
                 <div class="grid-header">
@@ -77,12 +73,9 @@
                     <div class="header-item">Action</div>
                     <div class="header-item">Image Format</div>
                     <div class="header-item">Status</div>
-                    <div class="header-item">
-                        Analysis Completed
-                    </div>
+                    <div class="header-item">Analysis Completed </div>
                     <div class="header-item">Memo</div>
                 </div>
-
                 <div class="grid-row">
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
@@ -101,7 +94,6 @@
                     <div class="row-item">-</div>
                     <div class="row-item"></div>
                 </div>
-
                 <div class="grid-row">
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
@@ -117,19 +109,14 @@
                     <div class="row-item"><img src="img/icon_Edit.png" alt="Edit"></div>
                     <div class="row-item">DICOM</div>
                     <div class="row-item">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="moving-effect"></div>
+                        <div class="progress progress-striped active">
+                            <div role="progressbar" class="progress-bar progress-bar-default" style="width: 70%;">
                             </div>
                         </div>
                     </div>
                     <div class="row-item">-</div>
                     <div class="row-item"></div>
                 </div>
-
-
-
-
                 <div class="grid-row">
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
@@ -143,10 +130,20 @@
                     <div class="row-item"><a style="color: red; font-weight: 900;">Suspected</a></div>
                     <div class="row-item">2022-05-01 (66)</div>
                     <div class="row-item">
-                        <img src="img/icon_Viewer.png" alt="View">
-                        <img src="img/icon_export.png" alt="Export">
-                        <img src="img/icon_Edit.png" alt="Edit">
-                        <img src="img/icon_Delete.png" alt="Delete">
+                        <div class="icon-container">
+                            <div class="action-icon view-icon">
+                                <img src="img/icon_Viewer.png" alt="view">
+                            </div>
+                            <div class="action-icon export-icon">
+                                <img src="img/icon_export.png" alt="Export">
+                            </div>
+                            <div class="action-icon edit-icon">
+                                <img src="img/icon_Edit.png" alt="Edit">
+                            </div>
+                            <div class="action-icon delete-icon">
+                                <img src="img/icon_Delete.png" alt="Delete">
+                            </div>
+                        </div>
                     </div>
                     <div class="row-item">DICOM</div>
                     <div class="row-item">Completed</div>
@@ -155,15 +152,22 @@
                 </div>
             </div>
         </section>
-
     </main>
-
     <script>
-        function selectMenu(element) {
-            document.querySelectorAll('.section-menu').forEach(menu => menu.classList.remove('active'));
-            element.classList.add('active');
-        }
-
+        // Add event listeners for better separation of concerns
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectAllCheckbox = document.getElementById('select-all');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            selectAllCheckbox.addEventListener('change', function () {
+                toggleSelectAll(this);
+            });
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    toggleRowHighlight(this);
+                });
+            });
+        });
+        // Function to toggle row highlight when checkbox is checked
         function toggleRowHighlight(checkbox) {
             const row = checkbox.closest('.grid-row');
             if (checkbox.checked) {
@@ -172,13 +176,13 @@
                 row.classList.remove('highlighted');
             }
         }
-
+        // Function to toggle select all checkboxes
         function toggleSelectAll(masterCheckbox) {
             const isChecked = masterCheckbox.checked;
             const rowCheckboxes = document.querySelectorAll('.row-checkbox');
             rowCheckboxes.forEach(checkbox => {
                 checkbox.checked = isChecked;
-                toggleRowHighlight(checkbox);
+                toggleRowHighlight(checkbox); // Also update row highlight when selecting/deselecting
             });
         }
     </script>
