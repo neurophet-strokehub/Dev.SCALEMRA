@@ -20,7 +20,6 @@
   padding: 0;
   border: 0;
   text-decoration: none;
-  background: none;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   color: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -29,50 +28,41 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   background: var(--base-3);
 }
 
 menu,
 ol,
 ul {
-  list-style: none;
+  list-style: circle;
 }
 
 /* Layout */
 .main-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   padding: 20px;
   background: var(--base-3);
 }
-
 .content01,
-.content02 {
-  padding: 0 10px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+.content02,
 .content03 {
-  padding: 0 10px;
   width: 100%;
-  min-height: 75vh;
-  justify-self: start;
-  background: var(--base-grey);
-}
-
-.frame-01 {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+}
+.frame-lt {
+}
+.frame-rt {
+  display: flex;
+  gap: 20px;
 }
 
 /* Access Bar */
@@ -224,12 +214,11 @@ ul {
 }
 
 /* Typography */
-.h1 {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.4;
+.a1 {
+  font-size: var(--superheader-font-size, 20px);
+  line-height: var(--superheader-line-height, 140%);
+  font-weight: var(--superheader-font-weight, 700);
 }
-
 .instructions {
   color: var(--whitedisabled);
   font-weight: 300;
@@ -252,7 +241,7 @@ ul {
 /* Analysis Grid */
 .analysis-grid {
   width: 100%;
-  font-size: 15px;
+  font-size: 14px;
   display: grid;
   grid-template-columns: auto 60px 80px repeat(11, 1fr);
   border-collapse: collapse;
