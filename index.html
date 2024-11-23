@@ -7,88 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
-    <style>
-        .form-container {
-            background: var(--base-4, #383838);
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 45px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            gap: 20px;
-            max-width: 500px;
-        }
-        
-        .input-field {
-            background: var(--ui-6, #1e1e1e);
-            border-radius: 2px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 12px 12px 12px;
-            height: 40px;
-            width: calc(100% - 24px);
-        }
-        
-        .button {
-            background: var(--ui-1, #1077fe);
-            border-radius: 3px;
-            color: white;
-            height: 40px;
-            width: calc(100% - 24px);
-            /* Responsive width */
-        }
-        
-        .instructions {
-            color: rgba(255, 255, 255, 0.6);
-            width: calc(100% - 24px);
-            font-weight: 100;
-        }
-        
-        .window-controls {
-            cursor: not-allowed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .start-button {
-            width: calc(100% - 24px);
-            background-color: #1077fe;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 10px 16px;
-            cursor: pointer;
-            transition: transform 0.1s ease, background-color 0.3s ease;
-        }
-        
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 50px);
-            /* Adjust based on your header height */
-        }
-        
-        .form-container {
-            /* Your existing styles */
-            margin: auto;
-            /* This helps with centering */
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        
-        .access-bar {
-            /* Your existing styles */
-            flex-shrink: 0;
-        }
-    </style>
+
     <title>MKT_NEUROPHET SCALE MRA</title>
 </head>
 
@@ -106,28 +25,23 @@
     <main class="main-content">
         <div class="form-container">
             <div class="logo-section">
-                <img src="img/Product Logo2.png" alt="" style="scale: 1.2; margin: 1rem;">
+                <img src="img/Product Logo2.png" alt="Product Logo" style="transform: scale(1.2); margin: 1rem;">
             </div>
-            <input type="password" class="input-field" placeholder="Password" id="passwordInput" />
+            <input type="password" class="login-input-field" placeholder="Password" id="passwordInput" />
             <button class="start-button" onclick="togglePasswordVisibility()">Start</button>
-
-            <div class="instructions">
+            <ul class="instructions">
                 <li>Do not share the password with any other authorized persons.</li>
                 <li>If you forget your password, contact a service representative.</li>
-            </div>
+            </ul>
         </div>
     </main>
-
+    
     <script>
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('passwordInput');
-            const enteredPassword = passwordInput.value;
-
-            if (enteredPassword === '1111') {
+            if (passwordInput.value === '1111') {
                 document.body.style.opacity = '0';
-                setTimeout(() => {
-                    window.location.href = 'mainpage.html';
-                }, 500);
+                setTimeout(() => window.location.href = 'mainpage.html', 500);
             } else {
                 alert('Incorrect password. Please try again.');
             }

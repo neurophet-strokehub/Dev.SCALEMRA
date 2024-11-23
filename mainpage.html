@@ -2,77 +2,426 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
     <title>MKT_NEUROPHET SCALE MRA</title>
+    <style>
+        :root {
+  --base-3: #282828;
+  --base-grey: #383838;
+  --white: #ffffff;
+  --ui-1: #1077fe;
+  --ui-6: #1e1e1e;
+  --opacity-7: rgba(255, 255, 255, 0.1);
+  --opacity-8: rgba(255, 255, 255, 0.05);
+  --whitedisabled: rgba(255, 255, 255, 0.2);
+  --border-color: rgba(255, 255, 255, 0.3);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  background: none;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--base-3);
+}
+menu,
+ol,
+ul {
+  list-style: none;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.content01,
+.content02 {
+  padding: 0px 10px 0px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content03 {
+  padding: 0px 10px 0px 10px;
+  width: 100%;
+  min-height: 80vh;
+  justify-self: start;
+  background: var(--base-4, #383838);
+}
+.frame-01 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.access-bar {
+  height: 50px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 0 20px;
+  background: var(--base-grey);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+.access-bar-leftside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-menu-container {
+  display: flex;
+  align-items: center;
+}
+.section-menu {
+  cursor: pointer;
+  padding: 15px;
+  transition: background-color 0.3s;
+}
+.section-menu:hover,
+.section-menu.active {
+  background-color: var(--opacity-7);
+}
+.section-menu.active {
+  font-weight: bold;
+}
+.form-container {
+  background: var(--base-grey);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+}
+.login-input-field,
+.text-field {
+  background: var(--ui-6);
+  border-radius: 2px;
+  border: 2px solid var(--border-color);
+  padding: 12px;
+  height: 40px;
+  min-width: 400px;
+}
+.text-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background: var(--ui-6);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 4px 8px;
+  height: 40px;
+  width: 100%;
+}
+.text-field input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  border: none;
+  outline: none;
+  background: none;
+  color: var(--white);
+  font-family: inherit;
+}
+.text-field .placeholder {
+  color: var(--whitedisabled);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  flex-grow: 1;
+  min-width: 400px;
+}
+.button-container {
+  display: flex;
+  gap: 12px;
+}
+.button,
+.button2,
+.start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 3px;
+  height: 40px;
+  min-width: 100px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+.button {
+  background: var(--opacity-7);
+  border: 1px solid var(--opacity-8);
+  color: var(--whitedisabled);
+}
+.button2,
+.start-button {
+  background: var(--ui-1);
+  color: var(--white);
+  width: 100%;
+}
+.button:hover,
+.button2:hover {
+  transform: translateY(-2px);
+}
+.start-button:hover {
+  transform: translateY(-2px);
+  background: white;
+  color: #1077fe;
+  font-weight: bolder;
+}
+.button:active,
+.button2:active,
+.start-button:active {
+  transform: translateY(1px);
+}
+.h1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.instructions {
+  color: var(--whitedisabled);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.text-disable {
+  color: var(--whitedisabled);
+}
+.window-controls {
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.analysis-grid {
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: auto repeat(13, 1fr);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-header {
+  display: contents;
+}
+
+.header-item {
+  padding: 10px;
+  background-color: var(--header-bg-color);
+  border-bottom: 1px solid var(--opacity-6, rgba(255, 255, 255, 0.2));
+  position: relative;
+}
+
+.header-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: var(--opacity-6, rgba(255, 255, 255, 0.2));
+}
+
+.grid-row {
+  display: contents;
+}
+
+.row-item {
+  font-size: 12px;
+  font-weight: 100;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+@media (max-width: 600px) {
+  .access-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+  .button-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  .button,
+  .button2 {
+    width: 100%;
+  }
+  .text-field {
+    max-width: 100%;
+  }
+}
+
+    </style>
 </head>
 
 <body>
-
     <header class="access-bar">
         <div class="access-bar-leftside">
-            <div class="logo">
-                <img src="img/Product Logo.png" style="margin-right: 2rem;" />
-            </div>
-
-            <div class="section-menu active" onclick="selectMenu(this)">
-                <div class="accesstext1">Analysis</div>
-            </div>
-            <div class="section-menu">
-                <div class="accesstext2" style="font-weight: 100;">Queue (1)</div>
-            </div>
+            <div class="logo"> <img src="img/Product Logo.png" alt="Product Logo"> </div>
+            <nav>
+                <div class="section-menu-container">
+                    <div class="section-menu active">
+                        <div class="accesstext1">Analysis</div>
+                    </div>
+                    <div class="section-menu">
+                        <div class="accesstext2" style="font-weight: 100;">Queue (1)</div>
+                    </div>
+                </div>
+            </nav>
         </div>
-
-        <div class="window-controls">
-            <img src="img/windowbtn.png" />
-        </div>
+        <div class="window-controls"> <img src="img/windowbtn.png" alt="Window Controls"> </div>
     </header>
 
     <main class="main-content">
-        <div class="content01">
+        <section class="content01">
             <div class="frame-01">
-                <div class="h1">Analysis</div>
+                <h1 class="h1">Analysis</h1>
                 <div class="button-container">
-                    <div class="button">
+                    <button class="button">
                         <img src="img/icon_export.png" alt="Export icon">
-                        <div class="text-disable">Export</div>
-                    </div>
-                    <div class="button2">
+                        <span class="text-disable">Export</span>
+                    </button>
+                    <button class="button2">
                         <img src="img/icon_Plus.png" alt="Plus icon">
-                        <div class="text2">New Analysis</div>
-                    </div>
+                        <span class="text2">New Analysis</span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content02">
-            <div class="frame-01">
+        <section class="content02">
+            <div class="frame-02">
                 <div class="text-field">
-                    <div class="frame-3512">
-                        <img class="icon-search" src="icon-search0.svg" />
-                        <div class="placeholder">Enter patient ID or name</div>
-                    </div>
-                </div>
-                <div class="frame-6543">
-                    <div class="total-analysis-3">Total analysis: 3</div>
+                    <img class="icon-search" src="img/icon_Search.png" alt="Search icon">
+                    <input type="text" placeholder="Enter patient ID or name">
                 </div>
             </div>
-        </div>
+            <div class="frame-03">Total analysis: 3</div>
+        </section>
 
 
+        <section class="content03">
+            <div class="analysis-grid">
+                <div class="grid-header">
+                    <div class="header-item"><img src="icon-check-off0.svg" alt="Check"></div>
+                    <div class="header-item">ID</div>
+                    <div class="header-item">Mode</div>
+                    <div class="header-item">Patient ID</div>
+                    <div class="header-item">Patient Name</div>
+                    <div class="header-item">Sex</div>
+                    <div class="header-item">Date of Birth (Age)</div>
+                    <div class="header-item">AI Result</div>
+                    <div class="header-item">Scan Date (Age)</div>
+                    <div class="header-item">Action</div>
+                    <div class="header-item">Image Fo</div>
+                    <div class="header-item">Status</div>
+                    <div class="header-item">
+                        Analysis Completed
+                    </div>
+                    <div class="header-item">Memo</div>
+                </div>
+
+                <div class="grid-row">
+                    <div class="row-item"><img src="icon-check-off1.svg" alt="Check"></div>
+                    <div class="row-item">3</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">19900429</div>
+                    <div class="row-item">이뉴로</div>
+                    <div class="row-item">Female</div>
+                    <div class="row-item">1962-01-15 (68)</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item">2022-07-25 (66)</div>
+                    <div class="row-item"><img src="icon-edit0.svg" alt="Edit"></div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">In Queue</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item"></div>
+                </div>
+
+                <div class="grid-row">
+                    <div class="row-item"><img src="icon-check-off2.svg" alt="Check"></div>
+                    <div class="row-item">2</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">19900429</div>
+                    <div class="row-item">김뉴로</div>
+                    <div class="row-item">Male</div>
+                    <div class="row-item">1958-03-23 (66)</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item">2021-08-22 (63)</div>
+                    <div class="row-item"><img src="img/icon_Edit.png" alt="Edit"></div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">
+                        <img src="pattern-background0.svg" alt="In Progress">
+                        <img src="frame-53000.svg" alt="Progress">
+                    </div>
+                    <div class="row-item">-</div>
+                    <div class="row-item"></div>
+                </div>
+
+                <div class="grid-row">
+                    <div class="row-item"><img src="icon-check-off3.svg" alt="Check"></div>
+                    <div class="row-item">1</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">19900429</div>
+                    <div class="row-item">이뉴로</div>
+                    <div class="row-item">Female</div>
+                    <div class="row-item">1962-01-15 (68)</div>
+                    <div class="row-item"><a style="color: red;">Suspected</a></div>
+                    <div class="row-item">2022-05-01 (66)</div>
+                    <div class="row-item">
+                        <img src="img/icon_Viewer.png" alt="View">
+                        <img src="img/icon_export.png" alt="Export">
+                        <img src="img/icon_Edit.png" alt="Edit">
+                        <img src="img/icon_Delete.png" alt="Delete">
+                    </div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">Completed</div>
+                    <div class="row-item">2024-01-01 10:52</div>
+                    <div class="row-item"></div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
     <script>
         function selectMenu(element) {
-            const menus = document.querySelectorAll('.section-menu');
-            menus.forEach(menu => {
-                menu.classList.remove('active');
-            });
+            document.querySelectorAll('.section-menu').forEach(menu => menu.classList.remove('active'));
             element.classList.add('active');
         }
     </script>
