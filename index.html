@@ -5,68 +5,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+S:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./vars.css" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
     <style>
-        /* CSS Reset */
-        
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            border: none;
-            text-decoration: none;
-            background: none;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        body {
-            font-family: "Noto Sans", sans-serif;
-        }
-        
-        menu,
-        ol,
-        ul {
-            list-style-type: none;
-        }
-        
-        .container {
-            min-width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--base-3, #282828);
-        }
-        
-        .header {
-            background: var(--base-grey, #383838);
-            padding: 10px;
-            max-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-            position: fixed;
-            /* Keeps it at the top */
-            top: 0;
-            /* Ensures it's at the very top */
-            left: 0;
-            /* Ensures it's aligned to the left */
-            z-index: 1000;
-            /* Ensures it stays above other content */
-        }
-        
-        .window-controls button {
-            background: transparent;
-            /* Makes buttons blend with header */
-        }
-        
         .form-container {
             background: var(--base-4, #383838);
             border-radius: 4px;
@@ -102,34 +43,14 @@
         .instructions {
             color: rgba(255, 255, 255, 0.6);
             width: calc(100% - 24px);
-        }
-        /* Media Queries for Responsiveness */
-        
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                /* Stack items vertically on small screens */
-                align-items: flex-start;
-                /* Align items to start */
-            }
-            .form-container {
-                padding: 16px;
-                /* Less padding on small screens */
-            }
-            .input-field,
-            .button {
-                width: calc(100% - 16px);
-                /* Adjusted width for small screens */
-            }
+            font-weight: 100;
         }
         
         .window-controls {
             cursor: not-allowed;
-            /* Change cursor on hover */
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Example background */
         }
         
         .start-button {
@@ -137,65 +58,76 @@
             background-color: #1077fe;
             color: white;
             border: none;
-            /* No border */
             border-radius: 3px;
-            /* Rounded corners */
             padding: 10px 16px;
-            /* Padding */
             cursor: pointer;
-            /* Pointer cursor on hover */
             transition: transform 0.1s ease, background-color 0.3s ease;
-            /* Transition effects */
         }
         
-        .start-button:hover {
-            background-color: #0a5dbf;
-            font-weight: bolder;
-            /* Darker blue on hover */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 50px);
+            /* Adjust based on your header height */
         }
         
-        .start-button:active {
-            transform: scale(0.95);
-            /* Scale down on click */
+        .form-container {
+            /* Your existing styles */
+            margin: auto;
+            /* This helps with centering */
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .access-bar {
+            /* Your existing styles */
+            flex-shrink: 0;
         }
     </style>
-    <title>SCALE MRA-demo</title>
+    <title>MKT_NEUROPHET SCALE MRA</title>
 </head>
 
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                <img src="img/Product Logo.png" />
-            </div>
+    <header class="access-bar">
+        <div class="logo">
+            <img src="img/Product Logo.png" />
+        </div>
 
-            <div class="window-controls">
-                <img src="img/windowbtn.png" />
-            </div>
-        </header>
+        <div class="window-controls">
+            <img src="img/windowbtn.png" />
+        </div>
+    </header>
 
-        <main class="form-container">
+    <main class="main-content">
+        <div class="form-container">
             <div class="logo-section">
-                <img src="img/Product Logo2.png" alt="" style="padding: 10px 10px 30px 10px; scale: 1.2" />
+                <img src="img/Product Logo2.png" alt="" style="scale: 1.2; margin: 1rem;">
             </div>
-            <input type="password" class="input-field" placeholder="Password" onfocus="this.style.backgroundColor='white';" id="passwordInput" />
+            <input type="password" class="input-field" placeholder="Password" id="passwordInput" />
             <button class="start-button" onclick="togglePasswordVisibility()">Start</button>
 
-            <div class="instructions" style="font-size: ; line-height: 140%; margin: 1rem 1rem 1rem 1rem;">
+            <div class="instructions">
                 <li>Do not share the password with any other authorized persons.</li>
                 <li>If you forget your password, contact a service representative.</li>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <script>
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('passwordInput');
             const enteredPassword = passwordInput.value;
 
-            if (enteredPassword === 'neurophet') {
-                alert('Login successful!');
-                // Redirect or perform actions after successful login
+            if (enteredPassword === '1111') {
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = 'mainpage.html';
+                }, 500);
             } else {
                 alert('Incorrect password. Please try again.');
             }

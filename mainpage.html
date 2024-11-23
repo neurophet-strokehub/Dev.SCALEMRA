@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>MKT_NEUROPHET SCALE MRA</title>
+
+</head>
+
+<body>
+
+    <header class="access-bar">
+        <div class="access-bar-leftside">
+            <div class="logo">
+                <img src="img/Product Logo.png" style="margin-right: 2rem;" />
+            </div>
+
+            <div class="section-menu active" onclick="selectMenu(this)">
+                <div class="accesstext1">Analysis</div>
+            </div>
+            <div class="section-menu">
+                <div class="accesstext2" style="font-weight: 100;">Queue (1)</div>
+            </div>
+        </div>
+
+        <div class="window-controls">
+            <img src="img/windowbtn.png" />
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content01">
+            <div class="frame-01">
+                <div class="h1">Analysis</div>
+                <div class="button-container">
+                    <div class="button">
+                        <img src="img/icon_export.png" alt="Export icon">
+                        <div class="text-disable">Export</div>
+                    </div>
+                    <div class="button2">
+                        <img src="img/icon_Plus.png" alt="Plus icon">
+                        <div class="text2">New Analysis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content02">
+            <div class="frame-01">
+                <div class="text-field">
+                    <div class="frame-3512">
+                        <img class="icon-search" src="icon-search0.svg" />
+                        <div class="placeholder">Enter patient ID or name</div>
+                    </div>
+                </div>
+                <div class="frame-6543">
+                    <div class="total-analysis-3">Total analysis: 3</div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <script>
+        function selectMenu(element) {
+            const menus = document.querySelectorAll('.section-menu');
+            menus.forEach(menu => {
+                menu.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
