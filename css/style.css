@@ -4,11 +4,14 @@
   --white: #ffffff;
   --ui-1: #1077fe;
   --ui-6: #1e1e1e;
+  --opacity-6: rgba(255, 255, 255, 0.2);
   --opacity-7: rgba(255, 255, 255, 0.1);
   --opacity-8: rgba(255, 255, 255, 0.05);
   --whitedisabled: rgba(255, 255, 255, 0.2);
   --border-color: rgba(255, 255, 255, 0.3);
 }
+
+/* Global Styles */
 *,
 *::before,
 *::after {
@@ -22,17 +25,21 @@
   color: var(--white);
   -webkit-font-smoothing: antialiased;
 }
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background: var(--base-3);
 }
+
 menu,
 ol,
 ul {
   list-style: none;
 }
+
+/* Layout */
 .main-content {
   flex: 1;
   display: flex;
@@ -41,28 +48,34 @@ ul {
   align-items: center;
   gap: 20px;
   padding: 20px;
+  background: var(--base-3);
 }
+
 .content01,
 .content02 {
-  padding: 0px 10px 0px 10px;
+  padding: 0 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .content03 {
-  padding: 0px 10px 0px 10px;
+  padding: 0 10px;
   width: 100%;
-  min-height: 80vh;
+  min-height: 75vh;
   justify-self: start;
-  background: var(--base-4, #383838);
+  background: var(--base-grey);
 }
+
 .frame-01 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
+
+/* Access Bar */
 .access-bar {
   height: 50px;
   position: sticky;
@@ -76,27 +89,34 @@ ul {
   align-items: center;
   z-index: 1000;
 }
+
 .access-bar-leftside {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .section-menu-container {
   display: flex;
   align-items: center;
 }
+
 .section-menu {
   cursor: pointer;
   padding: 15px;
   transition: background-color 0.3s;
 }
+
 .section-menu:hover,
 .section-menu.active {
   background-color: var(--opacity-7);
 }
+
 .section-menu.active {
   font-weight: bold;
 }
+
+/* Form and Input Styles */
 .form-container {
   background: var(--base-grey);
   border-radius: 4px;
@@ -109,6 +129,7 @@ ul {
   max-width: 500px;
   width: 100%;
 }
+
 .login-input-field,
 .text-field {
   background: var(--ui-6);
@@ -118,20 +139,18 @@ ul {
   height: 40px;
   min-width: 400px;
 }
+
 .text-field {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  background: var(--ui-6);
-  border: 2px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 8px;
-  height: 40px;
   width: 100%;
 }
+
 .text-field input {
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 8px 12px;
@@ -141,8 +160,8 @@ ul {
   outline: none;
   background: none;
   color: var(--white);
-  font-family: inherit;
 }
+
 .text-field .placeholder {
   color: var(--whitedisabled);
   font-size: 14px;
@@ -151,10 +170,13 @@ ul {
   flex-grow: 1;
   min-width: 400px;
 }
+
+/* Button Styles */
 .button-container {
   display: flex;
   gap: 12px;
 }
+
 .button,
 .button2,
 .start-button {
@@ -169,46 +191,57 @@ ul {
   transition: background-color 0.3s ease, transform 0.1s ease;
   cursor: pointer;
 }
+
 .button {
   background: var(--opacity-7);
   border: 1px solid var(--opacity-8);
   color: var(--whitedisabled);
 }
+
 .button2,
 .start-button {
   background: var(--ui-1);
   color: var(--white);
   width: 100%;
 }
+
 .button:hover,
-.button2:hover {
-  transform: translateY(-2px);
-}
+.button2:hover,
 .start-button:hover {
   transform: translateY(-2px);
-  background: white;
-  color: #1077fe;
+}
+
+.start-button:hover {
+  background: var(--white);
+  color: var(--ui-1);
   font-weight: bolder;
 }
+
 .button:active,
 .button2:active,
 .start-button:active {
   transform: translateY(1px);
 }
+
+/* Typography */
 .h1 {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.4;
 }
+
 .instructions {
   color: var(--whitedisabled);
   font-weight: 300;
   font-size: 14px;
   line-height: 1.5;
 }
+
 .text-disable {
   color: var(--whitedisabled);
 }
+
+/* Utility Classes */
 .window-controls {
   cursor: not-allowed;
   display: flex;
@@ -216,11 +249,12 @@ ul {
   justify-content: center;
 }
 
+/* Analysis Grid */
 .analysis-grid {
-  font-size: 14px;
-  display: grid;
-  grid-template-columns: auto repeat(13, 1fr);
   width: 100%;
+  font-size: 15px;
+  display: grid;
+  grid-template-columns: auto 60px 80px repeat(11, 1fr);
   border-collapse: collapse;
 }
 
@@ -228,10 +262,14 @@ ul {
   display: contents;
 }
 
+.grid-row {
+  display: contents;
+}
+
 .header-item {
   padding: 10px;
-  background-color: var(--header-bg-color);
-  border-bottom: 1px solid var(--opacity-6, rgba(255, 255, 255, 0.2));
+  background-color: var(--base-grey);
+  border-bottom: 1px solid var(--opacity-6);
   position: relative;
 }
 
@@ -243,19 +281,17 @@ ul {
   transform: translateY(-50%);
   width: 1px;
   height: 16px;
-  background: var(--opacity-6, rgba(255, 255, 255, 0.2));
-}
-
-.grid-row {
-  display: contents;
+  background: var(--opacity-6);
 }
 
 .row-item {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 100;
   padding: 10px;
   border-bottom: 1px solid var(--border-color);
 }
+
+/* Media Queries */
 @media (max-width: 600px) {
   .access-bar {
     flex-direction: column;
@@ -272,5 +308,10 @@ ul {
   }
   .text-field {
     max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .analysis-grid {
+    grid-template-columns: auto 50px 70px repeat(3, 1fr);
   }
 }
