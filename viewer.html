@@ -6,306 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MKT_NEUROPHET SCALE MRA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet'>
+    <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet">
     <link rel="stylesheet" href="css/viwer-style.css">
-    <style>
-        :root {
-            --base-3: #282828;
-            --base-grey: #383838;
-            --white: #ffffff;
-            --ui-1: #1077fe;
-            --ui-6: #1e1e1e;
-            --opacity-4: rgba(255, 255, 255, 0.4);
-            --opacity-6: rgba(255, 255, 255, 0.2);
-            --opacity-7: rgba(255, 255, 255, 0.1);
-            --opacity-8: rgba(255, 255, 255, 0.05);
-            --whitedisabled: rgba(255, 255, 255, 0.2);
-            --border-color: rgba(255, 255, 255, 0.3);
-        }
 
-        body {
-            font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            background-color: var(--base-3);
-            color: var(--white);
-        }
-
-        .animated {
-            animation-duration: 0.5s;
-            animation-fill-mode: both;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .fadeIn {
-            animation-name: fadeIn;
-        }
-
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--base-grey);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loader::after {
-            content: "";
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--opacity-8);
-            border-top: 5px solid var(--ui-1);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .access-bar {
-            display: flex;
-            position: sticky;
-            top: 0;
-            height: 55px;
-            padding: 20px;
-            background-color: var(--base-grey);
-            justify-content: space-between;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            align-items: center;
-        }
-
-        .main-content {
-            display: flex;
-            margin-top: 55px;
-            height: calc(100vh - 1px);
-        }
-
-        .left-panel {
-            flex: 1 1 250px;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--base-grey);
-            padding: 20px;
-        }
-
-        .right-panel {
-            flex: 2 1 650px;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--base-3);
-            margin: 1px;
-        }
-
-        .info-grid {
-            display: grid;
-            gap: 10px;
-        }
-
-        .divider {
-            margin: 20px 0;
-            border: none;
-            border-top: 1px solid var(--opacity-7);
-        }
-
-        button {
-            padding: 8px 16px;
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: var(--opacity-4);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        button:hover {
-            background-color: var(--opacity-6);
-            transform: translateY(-2px);
-        }
-
-        .edit-btn {
-            width: 16px;
-            height: 16px;
-            background: none;
-            border: none;
-            padding: 0;
-            margin-left: 10px;
-        }
-
-        .reset-btn {
-            border: 1px solid var(--opacity-3);
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .view-details-btn {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .viewer-switch {
-            background-color: var(--base-grey);
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .viewer {
-            flex-grow: 1;
-            background-color: var(--base-grey);
-            border-radius: 0 0 8px 8px;
-            padding: 20px;
-            overflow: auto;
-        }
-
-        h1,
-        h2 {
-            color: rgba(255, 255, 255, 0.90);
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 20px;
-            line-height: 19.60px;
-        }
-
-        h2 {
-            font-size: 18px;
-            line-height: 19.60px;
-        }
-
-        dd {
-            color: white;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 19.60px;
-        }
-
-        dt {
-            color: rgba(255, 255, 255, 0.60);
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 16.80px;
-        }
-
-        .close-button {
-            background-color: transparent;
-        }
-
-        .radio-wrapper-20 {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-        }
-
-        .radio-wrapper-20 input[type="radio"] {
-            clip: rect(0 0 0 0);
-            clip-path: inset(100%);
-            height: 1px;
-            overflow: hidden;
-            position: absolute;
-            white-space: nowrap;
-            width: 1px;
-        }
-
-        .radio-wrapper-20 input[type="radio"]+span {
-            padding: 8px 16px;
-            border: 1px solid var(--opacity-4);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .radio-wrapper-20 input[type="radio"]:checked+span {
-            background-color: var(--opacity-4);
-            color: var(--white);
-            box-shadow: 0 0 0 2px var(--opacity-3);
-        }
-
-        .radio-wrapper-20 input[type="radio"]:focus+span {
-            outline: 2px solid var(--opacity-3);
-            outline-offset: 2px;
-        }
-
-        .radio-wrapper-20 label:first-child span {
-            border-radius: 4px 0 0 4px;
-        }
-
-        .radio-wrapper-20 label:last-child span {
-            border-radius: 0 4px 4px 0;
-        }
-
-        .tab-icon {
-            width: 16px;
-            height: 16px;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-
-        @media (max-width: 1024px) {
-            .main-content {
-                flex-direction: column;
-            }
-
-            .left-panel {
-                max-height: 300px;
-            }
-
-            .right-panel {
-                height: calc(100vh - 360px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .access-bar {
-                flex-direction: column;
-                height: auto;
-                padding: 10px;
-            }
-
-            .access-bar-leftside,
-            .access-bar-rightside {
-                width: 100%;
-                justify-content: center;
-                margin-bottom: 10px;
-            }
-
-            .radio-wrapper-20 {
-                flex-direction: column;
-            }
-
-            .radio-wrapper-20 label {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
 </head>
+
 
 <body>
     <div class="loader"></div>
@@ -315,14 +20,14 @@
         </div>
         <div class="access-bar-rightside">
             <button class="close-button" onclick="closeAndRedirect()">
-                <img src="img/Button (2).png" alt="close">
+                <img src="img/Button (2).png" style="background-color: transparent;" alt="close">
             </button>
         </div>
     </header>
     <main class="main-content">
         <aside class="left-panel">
             <section class="patient-info">
-                <h2>Patient Demographics</h2>
+                <h1>Patient Demographics</h1>
                 <dl class="info-grid">
                     <div class="info-item">
                         <dt>Patient ID</dt>
@@ -391,17 +96,40 @@
                     <label for="tab-report">
                         <input id="tab-report" type="radio" name="viewer-tabs">
                         <span class="name">
-                            <img src="img/icon_reports.png" alt="Report icon" class="tab-icon"> Report
+                            <img src="img/icon_reports.png" alt="Report icon"> Report
                         </span>
                     </label>
                 </div>
             </section>
+
             <section class="viewer">
-                <!-- Viewer content -->
+                <div class="pacs-viewer">
+                    <div class="image-grid">
+                        <div class="image-container axial">
+                            <img src="img/axial.png" alt="Axial View" id="axial-view" class="view-image">
+                        </div>
+                        <div class="image-container sagittal-coronal">
+                            <div class="image-container sagittal">
+                                <img src="img/sagittal.png" alt="Sagittal View" id="sagittal-view" class="view-image">
+                            </div>
+                            <div class="image-container coronal">
+                                <img src="img/coronal.png" alt="Coronal View" id="coronal-view" class="view-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Section -->
+                <div class="pdf-viewer" id="pdf-viewer" style="display: none;">
+                    <iframe src="path/to/your-report.pdf" width="100%" height="600px" style="border: none;"></iframe>
+                </div>
             </section>
         </aside>
     </main>
+
+
     <script>
+        // Close and redirect function
         function closeAndRedirect() {
             const body = document.body;
             const loader = document.querySelector('.loader');
@@ -416,7 +144,25 @@
                 }, 50);
             }, 500);
         }
+
+        // Event listener to switch between Image and Report
+        document.getElementById('tab-image').addEventListener('change', function () {
+            if (this.checked) {
+                // Show images and hide report content
+                document.querySelector('.pacs-viewer').style.display = 'block';
+                document.getElementById('report-content').style.display = 'none';
+            }
+        });
+
+        document.getElementById('tab-report').addEventListener('change', function () {
+            if (this.checked) {
+                // Show report content and hide images
+                document.querySelector('.pacs-viewer').style.display = 'none';
+                document.getElementById('report-content').style.display = 'block';
+            }
+        });
     </script>
+
 </body>
 
 </html>
