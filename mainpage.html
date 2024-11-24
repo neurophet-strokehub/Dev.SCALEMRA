@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="animated fadeIn">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+    <div id="page-transition-overlay"></div>
     <header class="access-bar">
         <div class="access-bar-leftside">
             <div class="logo">
@@ -132,10 +134,12 @@
                     <div class="row-item">
                         <div class="icon-container">
 
-
                             <div class="action-icon view-icon" style="scale: 1.2;">
-                                <img src="img/icon_Viewer.svg" alt="view">
+                                <a href="viewer.html" onclick="transitionToPage(event, this.href)">
+                                    <img src="img/icon_Viewer.svg" alt="view">
+                                </a>
                             </div>
+
                             <div class="action-icon export-icon">
                                 <img src="img/icon_export.png" alt="Export">
                             </div>
@@ -186,6 +190,18 @@
                 checkbox.checked = isChecked;
                 toggleRowHighlight(checkbox); // Also update row highlight when selecting/deselecting
             });
+        }
+    </script>
+
+    <script>
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            const overlay = document.getElementById('page-transition-overlay');
+            overlay.style.opacity = '1';
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500); // 전환 시간을 조절할 수 있습니다
         }
     </script>
 </body>

@@ -1,0 +1,267 @@
+:root {
+  --base-3: #282828;
+  --base-grey: #383838;
+  --white: #ffffff;
+  --ui-1: #1077fe;
+  --ui-6: #1e1e1e;
+  --opacity-4: rgba(255, 255, 255, 0.4);
+  --opacity-6: rgba(255, 255, 255, 0.2);
+  --opacity-7: rgba(255, 255, 255, 0.1);
+  --opacity-8: rgba(255, 255, 255, 0.05);
+  --whitedisabled: rgba(255, 255, 255, 0.2);
+  --border-color: rgba(255, 255, 255, 0.3);
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--base-3);
+}
+
+.access-bar {
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  height: 55px;
+  background-color: var(--base-grey);
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  align-items: center;
+}
+
+.main-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 10px;
+  height: 100vh;
+  display: flex;
+}
+
+.left-panel {
+  width: 30%;
+  background-color: var(--base-grey);
+  overflow: hidden;
+  padding: 10px;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.right-panel {
+  width: 70%;
+  background-color: var(--base-grey);
+  overflow: hidden;
+  padding: 10px;
+  height: 100vh;
+}
+
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--base-grey);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--opacity-8);
+  border-top: 5px solid var(--ui-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.viewer-switch {
+  background-color: var(--base-grey);
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.viewer {
+  flex-grow: 1;
+  background-color: var(--base-grey);
+  border-radius: 0 0 8px 8px;
+  padding: 20px;
+  overflow: auto;
+}
+
+button {
+  padding: 8px 16px;
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--opacity-4);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: var(--opacity-6);
+  transform: translateY(-2px);
+}
+
+.edit-btn {
+  width: 16px;
+  height: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.reset-btn {
+  border: 1px solid var(--opacity-3);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+h1,
+h2 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 19.6px;
+}
+
+h2 {
+  font-size: 14px;
+  line-height: 19.6px;
+}
+
+dd {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19.6px;
+}
+
+dt {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16.8px;
+}
+
+.close-button {
+  background-color: transparent;
+}
+
+.radio-wrapper-20 {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.radio-wrapper-20 input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.radio-wrapper-20 input[type="radio"] + span {
+  padding: 8px 16px;
+  border: 1px solid var(--opacity-4);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.radio-wrapper-20 input[type="radio"]:checked + span {
+  background-color: var(--opacity-4);
+  color: var(--white);
+  box-shadow: 0 0 0 2px var(--opacity-3);
+}
+
+.radio-wrapper-20 input[type="radio"]:focus + span {
+  outline: 2px solid var(--opacity-3);
+  outline-offset: 2px;
+}
+
+.radio-wrapper-20 label:first-child span {
+  border-radius: 4px 0 0 4px;
+}
+
+.radio-wrapper-20 label:last-child span {
+  border-radius: 0 4px 4px 0;
+}
+
+.tab-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .left-panel {
+    width: 100%;
+    max-height: 300px;
+  }
+  .right-panel {
+    height: calc(100vh - 360px);
+  }
+}
+
+@media (max-width: 768px) {
+  .access-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+  .radio-wrapper-20 {
+    flex-direction: column;
+  }
+  .radio-wrapper-20 label {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
