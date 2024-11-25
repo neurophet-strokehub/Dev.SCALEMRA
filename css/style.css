@@ -310,3 +310,77 @@ body {
 .grid-row.highlighted {
   background-color: rgba(255, 255, 255, 0.8); /* Example for highlighting */
 }
+
+.progress {
+  position: relative;
+  height: 20px;
+  background: #1e1e1e;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    #1077fe,
+    #1077fe 10px,
+    #0056b3 10px,
+    #0056b3 20px
+  );
+  transition: width 0.2s ease-in-out;
+}
+
+.progress-striped {
+  animation: move-stripes 1s linear infinite;
+}
+
+@keyframes move-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 0;
+  }
+}
+
+.progress {
+  position: relative;
+  height: 20px;
+  background: #1e1e1e;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    #1077fe,
+    #1077fe 10px,
+    #0056b3 10px,
+    #0056b3 20px
+  );
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-striped {
+  animation: move-stripes 1s linear infinite;
+}
+
+@keyframes move-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 0;
+  }
+}

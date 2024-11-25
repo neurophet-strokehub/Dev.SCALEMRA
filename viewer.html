@@ -79,13 +79,14 @@
 
         .viewer {
             display: flex;
-            /* Let content (video) grow as needed */
-            background-color: var(--base-grey);
-            border-radius: 0 0 8px 8px;
             flex-direction: row;
+            height: calc(100vh - 100px);
+            background-color: black;
+            border-radius: 0 0 8px 8px;
+            padding: 0;
             overflow: hidden;
-            justify-content: center;
         }
+
 
         .viewer-switch {
             display: flex;
@@ -325,7 +326,8 @@
         .image-grid {
             display: flex;
             width: 100%;
-            height: calc(100vh - 100px);
+            height: 100%;
+            /* 부모의 전체 높이를 사용 */
             justify-content: flex-start;
         }
 
@@ -333,8 +335,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 100px);
             flex: 1;
+            /* 균등 분배 */
             padding: 1px;
         }
 
@@ -344,29 +346,32 @@
             object-fit: contain;
         }
 
-
         .sagittal-coronal {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%; /* 부모 높이 비율 유지 */
+}
 
-        .axial {
-            align-items: center;
-            justify-content: center;
-        }
+.axial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* 동일 높이 설정 */
+}
 
-        .sagittal,
-        .coronal {
-            height: 50%;
-            width: 100%;
-        }
+.sagittal,
+.coronal {
+    flex: 1;
+    width: 100%; /* 부모 넓이 채우기 */
+}
 
-        .image-container img {
-            transition: opacity 0.3s ease;
-            /* Smooth transition for hover effect */
-        }
-
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 이미지 비율 유지 */
+    transition: opacity 0.3s ease;
+}
         .image-container:hover img {
             opacity: 80;
             /* Hide the static image when hovering */
@@ -522,18 +527,6 @@
                 document.querySelector('.pacs-viewer').style.display = 'none';
                 document.getElementById('report-content').style.display = 'block';
             }
-        });
-
-        // Get the image element
-        const coronalImage = document.getElementById('coronal-view');
-
-        // Add event listeners for mouseover and mouseout
-        coronalImage.addEventListener('mouseover', function () {
-            coronalImage.src = 'img/coronal.gif'; // Change to the GIF on hover
-        });
-
-        coronalImage.addEventListener('mouseout', function () {
-            coronalImage.src = 'img/coronal_static.png'; // Change back to the static image when not hovering
         });
 
     </script>

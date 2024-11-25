@@ -13,7 +13,7 @@
             --base-3: #282828;
             --base-grey: #383838;
             --white: #ffffff;
-            --ui-1: #1077fe;
+            --ui-1: patient#1077fe;
             --ui-6: #1e1e1e;
             --opacity-6: rgba(255, 255, 255, 0.2);
             --opacity-7: rgba(255, 255, 255, 0.1);
@@ -141,7 +141,7 @@
         /* 버튼 스타일 */
         .button-container {
             display: flex;
-            gap: 12px;
+            gap: 20px;
         }
 
         .button,
@@ -327,9 +327,9 @@
                 </div>
             </div>
         </div>
-        <div class="window-controls">
+        <!-- <div class="window-controls">
             <img src="img/windowbtn.png" alt="Window Controls">
-        </div>
+        </div> -->
     </header>
     <main class="main-content">
         <h1 class="h1" style="padding-bottom: 20px;">Analysis</h1>
@@ -358,10 +358,10 @@
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
                     </div>
-                    <div class="row-item">3</div>
+                    <div class="row-item">03</div>
                     <div class="row-item"></div>
-                    <div class="row-item">19900429</div>
-                    <div class="row-item">이뉴로</div>
+                    <div class="row-item">00000003</div>
+                    <div class="row-item">김미영</div>
                     <div class="row-item">Female</div>
                     <div class="row-item">1962-01-15 (68)</div>
                     <div class="row-item">-</div>
@@ -376,10 +376,10 @@
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
                     </div>
-                    <div class="row-item">2</div>
+                    <div class="row-item">02</div>
                     <div class="row-item"></div>
-                    <div class="row-item">19900429</div>
-                    <div class="row-item">김뉴로</div>
+                    <div class="row-item">00000002</div>
+                    <div class="row-item">김철수</div>
                     <div class="row-item">Male</div>
                     <div class="row-item">1958-03-23 (66)</div>
                     <div class="row-item">-</div>
@@ -387,10 +387,13 @@
                     <div class="row-item"><img src="img/icon_Edit.png" alt="Edit"></div>
                     <div class="row-item">DICOM</div>
                     <div class="row-item">
-                        <div class="progress progress-striped active">
+                        <div class="progress progress-striped">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <!-- <div class="progress progress-striped active">
                             <div role="progressbar" class="progress-bar progress-bar-default" style="width: 70%;">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row-item">-</div>
                     <div class="row-item"></div>
@@ -399,10 +402,10 @@
                     <div class="row-item">
                         <input type="checkbox" class="row-checkbox" />
                     </div>
-                    <div class="row-item">1</div>
+                    <div class="row-item">01</div>
                     <div class="row-item"></div>
-                    <div class="row-item">19900429</div>
-                    <div class="row-item">이뉴로</div>
+                    <div class="row-item">00000001</div>
+                    <div class="row-item">김영희</div>
                     <div class="row-item">Female</div>
                     <div class="row-item">1962-01-15 (68)</div>
                     <div class="row-item"><a style="color: red; font-weight: 900;">Suspected</a></div>
@@ -411,7 +414,7 @@
                         <div class="icon-container">
                             <div class="action-icon view-icon" style="scale: 1.2;">
                                 <a href="viewer.html" onclick="transitionToPage(event, this.href)">
-                                    <img src="img/icon_Viewer.svg" alt="view">
+                                    <img src="img/icon_Viewer.png" alt="view">
                                 </a>
                             </div>
                             <div class="action-icon export-icon">
