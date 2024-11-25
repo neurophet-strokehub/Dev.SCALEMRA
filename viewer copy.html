@@ -466,8 +466,12 @@
             <section class="viewer">
                 <div class="pacs-viewer">
                     <div class="image-grid">
+
                         <div class="image-container axial">
-                            <img src="img/axial.png" alt="Axial View" id="axial-view" class="view-image">
+                            <iframe loading="lazy" 
+                            style="position: absolute; width: 100%; height: 100%; border: none;"
+                                src="https://www.canva.com/design/DAGXg_ayaWo/-c6t7DiL3me4qmsIveQZtw/watch" >
+                            </iframe>
                         </div>
                         <div class="image-container sagittal-coronal">
                             <div class="image-container sagittal">
@@ -522,18 +526,6 @@
                 document.querySelector('.pacs-viewer').style.display = 'none';
                 document.getElementById('report-content').style.display = 'block';
             }
-        });
-
-        // Get the image element
-        const coronalImage = document.getElementById('coronal-view');
-
-        // Add event listeners for mouseover and mouseout
-        coronalImage.addEventListener('mouseover', function () {
-            coronalImage.src = 'img/coronal.gif'; // Change to the GIF on hover
-        });
-
-        coronalImage.addEventListener('mouseout', function () {
-            coronalImage.src = 'img/coronal_static.png'; // Change back to the static image when not hovering
         });
 
     </script>
