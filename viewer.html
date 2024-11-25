@@ -64,14 +64,14 @@
             background-color: var(--base-grey);
             padding: 20px;
             margin-right: 5px;
-            overflow-y: auto;
+            overflow-y: hidden;
         }
 
         .right-panel {
             flex: 1;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            overflow-y: hidden;
             /* Enables vertical scrolling if content overflows */
             height: 100vh;
             /* Ensures it takes full height of the viewport */
@@ -79,16 +79,12 @@
 
         .viewer {
             display: flex;
-            height: auto;
             /* Let content (video) grow as needed */
-            background-color: black;
+            background-color: var(--base-grey);
             border-radius: 0 0 8px 8px;
-            padding: 0;
             flex-direction: row;
             overflow: hidden;
-            /* Prevent scrollbars inside the viewer */
             justify-content: center;
-            /* Center the video within the viewer */
         }
 
         .viewer-switch {
@@ -365,6 +361,16 @@
             height: 50%;
             width: 100%;
         }
+
+        .image-container img {
+            transition: opacity 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        .image-container:hover img {
+            opacity: 0;
+            /* Hide the static image when hovering */
+        }
     </style>
 </head>
 
@@ -468,7 +474,7 @@
                                 <img src="img/sagittal.png" alt="Sagittal View" id="sagittal-view" class="view-image">
                             </div>
                             <div class="image-container coronal">
-                                <img src="img/coronal.png" alt="Coronal View" id="coronal-view" class="view-image">
+                                <img src="img/coronal.gif" alt="Coronal View" id="coronal-view" class="view-image">
                             </div>
                         </div>
                     </div>
@@ -516,6 +522,19 @@
                 document.getElementById('report-content').style.display = 'block';
             }
         });
+
+        // Get the image element
+const coronalImage = document.getElementById('coronal-view');
+
+// Add event listeners for mouseover and mouseout
+coronalImage.addEventListener('mouseover', function() {
+    coronalImage.src = 'img/coronal.gif'; // Change to the GIF on hover
+});
+
+coronalImage.addEventListener('mouseout', function() {
+    coronalImage.src = 'img/coronal_static.png'; // Change back to the static image when not hovering
+});
+
     </script>
 
 </body>
