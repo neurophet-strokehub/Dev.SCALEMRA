@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Neurophet Marketing Team" />
+    <meta name="description" content="Demo version for neurophet SCALE MRA" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>S/title>
+</head>
+
+<body>
+    <header class="access-bar">
+        <div class="logo">
+            <img src="img/Product Logo.png" />
+        </div>
+
+        <div class="window-controls">
+            <img src="img/windowbtn.png" />
+        </div>
+    </header>
+
+    <main class="main-content" style="height: calc(100vh - 50px); align-content: center; justify-content: center;">
+        <div class="form-container">
+            <div class="logo-section">
+                <img src="img/Product Logo2.png" alt="Product Logo" style="transform: scale(1.2); margin: 1rem;">
+            </div>
+            <input type="password" class="login-input-field" placeholder="Password" id="passwordInput" />
+            <button class="start-button" onclick="togglePasswordVisibility()">Start</button>
+            <ul class="instructions">
+                <li>Do not share the password with any other authorized persons.</li>
+                <li>If you forget your password, contact a service representative.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput.value === '1111') {
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = '002.html', 500);
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+
+</html>
