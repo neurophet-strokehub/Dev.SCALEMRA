@@ -11,8 +11,7 @@
   --border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Global Styles */
-*,
+ *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -30,11 +29,11 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background
-  : var(--base-3);
+  background: var(--base-3);
 }
 
-.main-content{
+.main-content {
+  display: flex;
   height: 100vh;
 }
 
@@ -42,17 +41,6 @@ menu,
 ol,
 ul {
   list-style: circle;
-}
-
-/* Layout */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 30px;
-  background: var(--base-3);
 }
 
 .content01,
@@ -74,8 +62,7 @@ ul {
 .access-bar {
   position: sticky;
   top: 0;
-  padding: 0 20px;
-
+  padding: 20px;
   width: 100%;
   background: var(--base-grey);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
