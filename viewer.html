@@ -8,6 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet">
     <style>
+
+        /* Glowing effect for the close button */
+        #close-button {
+            animation: shine 2s infinite;
+        }
+
+        /* Glowing animation */
+        @keyframes shine {
+            0% {
+                box-shadow: 0 0 5px white, 0 0 10px white;
+            }
+
+            50% {
+                box-shadow: 0 0 8px white, 0 0 15px white;
+            }
+
+            100% {
+                box-shadow: 0 0 5px white, 0 0 10px white;
+            }
+        }
+
+        #close-button:hover {
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
         :root {
             --base-bg: #282828;
             --base-panel: #383838;
@@ -289,9 +313,7 @@
             cursor: pointer;
             margin: 0 10px;
             padding: 5px 10px;
-            border: 1px solid var(--divider-color);
             border-radius: 4px;
-            color: var(--text-white);
             transition: all 0.3s ease;
         }
 
@@ -303,9 +325,12 @@
         /* Glowing effect when hovered on the inactive tab */
         .viewer-switch input[type="radio"]:not(:checked):hover+label {
             box-shadow: 0 0 5px white, 0 0 10px white;
+            color: var(--text-white);           
+            background-color: grey;
+
+
             /* Glow on hover */
-            background-color: rgba(16, 119, 254, 0.1);
-            /* Soft background on hover */
+             /* Soft background on hover */
         }
 
         /* Active tab - remove glowing effect and set normal styles */
@@ -319,22 +344,18 @@
         /* When hovered, the active tab will not glow */
         .viewer-switch input[type="radio"]:checked+label:hover {
             box-shadow: none;
+            background-color: grey;
+
+
             /* No glow effect when active tab is hovered */
         }
-
-
-/* Apply shine animation to the close button and tab labels */
-.viewer-switch label,
-#close-button {
-    animation: shine 2s infinite; /* Subtle animation */
-}
     </style>
 </head>
 
 <body>
     <header class="access-bar">
         <h1>ANALYSIS VIEWER</h1>
-        <button class="btn btn-close" style="color: white; scale: 1.2;" id="close-button">X</button>
+        <button class="btn btn-close" style="color: white; scale: 1.2;" id="close-button" >X</button>
     </header>
     <main class="main-content">
         <!-- Left Panel -->
