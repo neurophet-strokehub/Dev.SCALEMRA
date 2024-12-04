@@ -682,11 +682,11 @@ window.onload = function() {
     const dicomRightBottom = document.getElementById('dicom-right-bottom');
 
     // 왼쪽의 Axial 이미지 경로 범위
-    for (let i = 220; i <= 250; i++) {
+    for (let i = 1; i <= 36; i++) {
         const img = document.createElement('img');
         img.src = `src/img/dcm_01/axial/axial${i.toString().padStart(4, '0')}.png`;
         img.alt = `Axial ${i}`;
-        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.width = '50%';  // 부모에 맞게 크기 조정
         img.style.height = 'auto'; // 비율 유지
         dicomLeft.appendChild(img);
     }
@@ -696,7 +696,7 @@ window.onload = function() {
         const img = document.createElement('img');
         img.src = `src/img/dcm_01/coronal/coronal${i.toString().padStart(4, '0')}.png`;
         img.alt = `Coronal ${i}`;
-        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.width = '50%';  // 부모에 맞게 크기 조정
         img.style.height = 'auto'; // 비율 유지
         dicomRightTop.appendChild(img);
     }
@@ -706,7 +706,7 @@ window.onload = function() {
         const img = document.createElement('img');
         img.src = `src/img/dcm_01/sagittal/sagittal${i.toString().padStart(4, '0')}.png`;
         img.alt = `Sagittal ${i}`;
-        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.width = '50%';  // 부모에 맞게 크기 조정
         img.style.height = 'auto'; // 비율 유지
         dicomRightBottom.appendChild(img);
     }
