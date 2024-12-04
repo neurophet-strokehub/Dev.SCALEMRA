@@ -417,27 +417,26 @@
             }
         }
 
-        .dicom-section::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 3px;
-        }
-
         .dicom-section {
+            overflow-y: auto;
+            height: 100%;
+            /* 또는 원하는 고정 높이 */
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
         }
 
+        .dicom-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
         .dicom-section::-webkit-scrollbar-thumb {
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 3px;
         }
 
-
         #dicom-container {
             flex: 1;
             display: flex;
-            overflow-y: hidden;
-            overflow-x: hidden;
             gap: 1rem;
         }
 
@@ -474,19 +473,7 @@
             font-weight: 600;
             display: inline-block;
             margin-bottom: 10px;
-        }
-
-        .dicom-section {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dicom-section img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-top: 10px;
-        }
+        } 
 
         @media (max-width: 768px) {
             #dicom-container {
@@ -599,7 +586,7 @@
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="value">
-                                <input type="number" value="70" onchange="updateValue(this)" />
+                                <input type="number" value="90" onchange="updateValue(this)" />
                             </div>
                             <button class="editor-btn" onclick="changeValue(this, 1)">
                                 <i class="fas fa-chevron-up"></i>
@@ -612,10 +599,9 @@
                 <!-- 추가 레이어들 -->
             </div>
         </div>
-        </div>
         <!-- 오른쪽 뷰어 내용 -->
         <div class="main-Rt">
-            <div class="Rt-top" style="background-color: #383838;">
+            <div class="Rt-top" style="background-color: #383838; margin-bottom: 2rem;">
                 <div class="frame" style="background-color: #383838;">
                     <div class="radio-wrapper">
                         <div class="radio-inputs">
@@ -633,10 +619,10 @@
                 </div>
             </div>
             <div class="Rt-bottom">
+
                 <div id="dicom-container">
                     <div id="dicom-left" class="dicom-section">
                         <span class="section-label">Axial</span>
-
                         <!-- Axial 이미지들 -->
                     </div>
                     <div id="dicom-right">
@@ -646,55 +632,50 @@
                         </div>
                         <div id="dicom-right-bottom" class="dicom-section">
                             <span class="section-label">Sagittal</span>
-
                             <!-- Sagittal 이미지들 -->
                         </div>
                     </div>
                 </div>
+
             </div>
     </main>
 
     <script>
+
         window.onload = function () {
             const dicomLeft = document.getElementById('dicom-left');
             const dicomRightTop = document.getElementById('dicom-right-top');
             const dicomRightBottom = document.getElementById('dicom-right-bottom');
 
-            // 이미지 로드 함수
             function loadImages(container, prefix, start, end, padLength) {
                 const images = [];
                 for (let i = start; i <= end; i++) {
                     const img = document.createElement('img');
                     img.src = `src/img/dcm_01/${prefix}/${prefix}${i.toString().padStart(padLength, '0')}.png`;
                     img.alt = `${prefix} ${i}`;
-                    img.style.display = 'none';  // 초기에 모든 이미지 숨김
+                    img.style.display = 'none';
                     container.appendChild(img);
                     images.push(img);
                 }
                 return images;
             }
 
-            // 이미지 표시 함수
             function showImage(images, index) {
                 images.forEach((img, i) => {
                     img.style.display = i === index ? 'block' : 'none';
                 });
             }
 
-            // 이미지 로드
             const axialImages = loadImages(dicomLeft, 'axial', 1, 80, 4);
             const coronalImages = loadImages(dicomRightTop, 'coronal', 240, 290, 4);
             const sagittalImages = loadImages(dicomRightBottom, 'sagittal', 220, 250, 4);
 
-            // 초기 이미지 표시
             showImage(axialImages, 0);
             showImage(coronalImages, 0);
             showImage(sagittalImages, 0);
 
-            // 스크롤 이벤트 처리
-            function handleScroll(images, container, currentIndex) {
-                let index = currentIndex;
-
+            function handleScroll(images, container) {
+                let index = 0;
                 container.addEventListener('wheel', (e) => {
                     e.preventDefault();
                     if (e.deltaY > 0 && index < images.length - 1) {
@@ -706,12 +687,12 @@
                 });
             }
 
-            // 스크롤 이벤트 리스너 추가
-            handleScroll(axialImages, dicomLeft, 0);
-            handleScroll(coronalImages, dicomRightTop, 0);
-            handleScroll(sagittalImages, dicomRightBottom, 0);
+            handleScroll(axialImages, dicomLeft);
+            handleScroll(coronalImages, dicomRightTop);
+            handleScroll(sagittalImages, dicomRightBottom);
         };
     </script>
+
 </body>
 
 </html>

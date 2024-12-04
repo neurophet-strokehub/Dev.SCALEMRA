@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="src/img/png/ICON_TAB.png" />
+    <link rel="icon" href="src/img/ICON_TAB.png" />
     <title>SCALE MRA_DEMO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -483,6 +483,7 @@
 
     <!-- MAIN -->
     <main>
+
         <div class="main-leftpannel">
             <div class="left-top">
                 <!-- 왼쪽 패널 상단 내용 -->
@@ -491,19 +492,23 @@
                     <div class="frame">
                         <div class="patient-id">
                             <div class="common-subheading">Patient ID</div>
-                            <div class="common-detail">241022101098510</div>
+                            <div class="common-detail">202111220000002
+
+                            </div>
                         </div>
                         <div class="patient-name">
                             <div class="common-subheading">Patient Name</div>
-                            <div class="common-detail">DEMO_시연용</div>
+                            <div class="common-detail">PT00002
+                            </div>
                         </div>
                         <div class="date-of-birth-age">
                             <div class="common-subheading">Date of Birth (Age)</div>
-                            <div class="common-detail">1950-01-22 (74)</div>
+                            <div class="common-detail">1970-01-01 (55)
+                            </div>
                         </div>
                         <div class="sex">
                             <div class="common-subheading">Sex</div>
-                            <div class="common-detail">Male</div>
+                            <div class="common-detail">Female</div>
                         </div>
                     </div>
                 </div>
@@ -513,11 +518,13 @@
                     <div class="frame">
                         <div class="scan-date-age">
                             <div class="common-subheading">Scan Date (Age)</div>
-                            <div class="common-detail">2023-01-15 (73)</div>
+                            <div class="common-detail">2014-07-23 (45)
+                            </div>
                         </div>
                         <div class="memo">
                             <div class="common-subheading">Memo</div>
-                            <div class="common-detail">시연용 데이터</div>
+                            <div class="common-detail">Aneurysms Suspected: 1
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -527,7 +534,7 @@
                     <div class="frame">
                         <div class="aneurysm-suspected">
                             <div class="common-subheading">Aneurysm Suspected</div>
-                            <div class="common-detail">5</div>
+                            <div class="common-detail">1</div>
                         </div>
                     </div>
                 </div>
@@ -552,17 +559,17 @@
                     <div class="visibility">
                         <div class="info">
                             <button class="toggle-btn" onclick="toggleVisibility(this)">
-                                <img src="src/img/png/eye-on.png" alt="Eye On" class="icon" />
+                                <img src="src/img/eye-on.png" alt="Eye On" class="icon" />
                             </button>
-                            <img src="src/img/png/all_color.png" style="margin-right: .5rem;">
-                            <div class="common-heading">ALL</div>
+                            <img src="src/img/all_color.png" style="margin-right: .5rem;">
+                            <div class="common-heading">#Aneurysm1</div>
                         </div>
                         <div class="numeric-editor">
                             <button class="editor-btn" onclick="changeValue(this, -1)">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="value">
-                                <input type="number" value="70" onchange="updateValue(this)" />
+                                <input type="number" value="90" onchange="updateValue(this)" />
                             </div>
                             <button class="editor-btn" onclick="changeValue(this, 1)">
                                 <i class="fas fa-chevron-up"></i>
@@ -570,70 +577,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="visibility">
-                    <div class="info">
-                        <button class="toggle-btn" onclick="toggleVisibility(this)">
-                            <img src="src/img/png/eye-on.png" alt="Eye On" class="icon" />
-                        </button>
-                        <img src="src/img/png/all_color_red.png" style="margin-right: .5rem;">
-                        <div class="common-heading">#Aneurysm1</div>
-                    </div>
-                    <div class="numeric-editor">
-                        <button class="editor-btn" onclick="changeValue(this, -1)">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="value">
-                            <input type="number" value="70" onchange="updateValue(this)" />
-                        </div>
-                        <button class="editor-btn" onclick="changeValue(this, 1)">
-                            <i class="fas fa-chevron-up"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="visibility">
-                    <div class="info">
-                        <button class="toggle-btn" onclick="toggleVisibility(this)">
-                            <img src="src/img/png/eye-on.png" alt="Eye On" class="icon" />
-                        </button>
-                        <img src="src/img/png/all_color_blue.png" style="margin-right: .5rem;">
-                        <div class="common-heading">#Aneurysm2</div>
-                    </div>
-                    <div class="numeric-editor">
-                        <button class="editor-btn" onclick="changeValue(this, -1)">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="value">
-                            <input type="number" value="70" onchange="updateValue(this)" />
-                        </div>
-                        <button class="editor-btn" onclick="changeValue(this, 1)">
-                            <i class="fas fa-chevron-up"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="visibility">
-                    <div class="info">
-                        <button class="toggle-btn" onclick="toggleVisibility(this)">
-                            <img src="src/img/png/eye-on.png" alt="Eye On" class="icon" />
-                        </button>
-                        <img src="src/img/png/all_color_yellow.png" style="margin-right: .5rem;">
-                        <div class="common-heading">#Aneurysm3</div>
-                    </div>
-                    <div class="numeric-editor">
-                        <button class="editor-btn" onclick="changeValue(this, -1)">
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="value">
-                            <input type="number" value="70" onchange="updateValue(this)" />
-                        </div>
-                        <button class="editor-btn" onclick="changeValue(this, 1)">
-                            <i class="fas fa-chevron-up"></i>
-                        </button>
-                    </div>
-                </div>
-
 
 
                 <!-- 추가 레이어들 -->
@@ -648,13 +591,13 @@
                             <label onclick="window.location.href='viewer_1.html'">
                                 <input id="radio1" type="radio" name="radio-group" checked />
                                 <span class="radio-label shadow">
-                                    <img src="src/img/png/icon_Viewer.png" style="margin-right: 1rem;">Image
+                                    <img src="src/img/icon_Viewer.png" style="margin-right: 1rem;">Image
                                 </span>
                             </label>
                             <label onclick="window.location.href='viewer_1_pdf.html'">
                                 <input id="radio2" type="radio" name="radio-group" checked />
                                 <span class="radio-label image-btn">
-                                    <img src="src/img/png/icon_Reports.png" style="margin-right: 1rem;">Report
+                                    <img src="src/img/icon_Reports.png" style="margin-right: 1rem;">Report
                                 </span>
                             </label>
                         </div>
@@ -664,12 +607,12 @@
             <div class="Rt-bottom">
                 <div class="iframe-container">
                     <iframe
-                        src="https://nbviewer.org/github/Neurophet-stroke/PROTOTYPE_MRA/blob/master/MRA_CLINICAL.pdf"></iframe>
+                        src="src/img/case01_report.pdf"></iframe>
                 </div>
-                <div class="iframe-container">
+                <!-- <div class="iframe-container">
                     <iframe
                         src="https://nbviewer.org/github/Neurophet-stroke/PROTOTYPE_MRA/blob/master/MRA_RUO.pdf"></iframe>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
