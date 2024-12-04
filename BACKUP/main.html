@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="animated fadeIn">
+
+<head>
+    <link rel="icon" href="img/favicon.png" type="image/png" /> 
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <title>YUHS_SCALE MRA DEMO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --base-3: #282828;
+            --base-grey: #383838;
+            --white: #ffffff;
+            --ui-1: patient#1077fe;
+            --ui-6: #1e1e1e;
+            --opacity-6: rgba(255, 255, 255, 0.2);
+            --opacity-7: rgba(255, 255, 255, 0.1);
+            --opacity-8: rgba(255, 255, 255, 0.05);
+            --whitedisabled: rgba(255, 255, 255, 0.2);
+            --border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Reset 기본 스타일 */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            text-decoration: none;
+            font-family: "Spoqa Han Sans Neo", sans-serif;
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: var(--base-3);
+        }
+
+        /* 메인 콘텐츠 영역 */
+        .main-content {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* 공통 콘텐츠 스타일 */
+
+        .conte1,
+        .conte2,
+        .conte3 {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 오른쪽 프레임 정렬 */
+        .frame-rt {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* 상단 접근 바 스타일 */
+        .access-bar {
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            height: 50px;
+            width: 100%;
+            background: var(--base-grey);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .access-bar-leftside,
+        .access-bar-rightside {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 섹션 메뉴 스타일 */
+        .section-menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .section-menu {
+            cursor: pointer;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .section-menu:hover,
+        .section-menu.active {
+            background-color: var(--opacity-7);
+        }
+
+        .section-menu.active {
+            font-weight: bold;
+        }
+
+        /* 텍스트 필드 스타일 */
+        .text-field {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            background: var(--ui-6);
+            border-radius: 4px;
+            padding: 4px 8px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .text-field input {
+            width: 100%;
+            height: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            border: none;
+            outline: none;
+            background: none;
+            color: var(--white);
+        }
+
+        /* 버튼 스타일 */
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button,
+        .button2,
+        .start-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 3px;
+            height: 40px;
+            min-width: 100px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            cursor: pointer;
+        }
+
+        .button {
+            background: var(--opacity-7);
+            border: 1px solid var(--opacity-8);
+            color: var(--whitedisabled);
+        }
+
+        .button2,
+        .start-button {
+            background: var(--ui-1);
+            color: var(--white);
+            width: 100%;
+        }
+
+        .button:hover,
+        .button2:hover,
+        .start-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .start-button:hover {
+            background: var(--white);
+            color: var(--ui-1);
+            font-weight: bolder;
+        }
+
+        .button:active,
+        .button2:active,
+        .start-button:active {
+            transform: translateY(1px);
+        }
+
+        /* 텍스트 비활성화 스타일 */
+        .text-disable {
+            color: var(--whitedisabled);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* Utility Classes */
+        .window-controls {
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Analysis Grid */
+        .analysis-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns:
+                minmax(auto, 40px) minmax(auto, 40px) minmax(auto, 70px) minmax(auto, 100px)
+                /*PatientID*/
+                minmax(auto, 150px)
+                /*Name */
+                minmax(auto, 80px)
+                /*sex */
+                minmax(auto, 180px)
+                /*dob */
+                minmax(auto, 100px)
+                /* result */
+                minmax(auto, 180px)
+                /*scan date */
+                minmax(auto, 180px)
+                /* Action */
+                minmax(auto, 140px)
+                /* Image Format*/
+                minmax(auto, 150px)
+                /* progress */
+                minmax(auto, 180px)
+                /* completed  */
+                minmax(auto, auto);
+            /* memo  */
+            grid-auto-rows: minmax(40px, auto);
+            border-collapse: collapse;
+        }
+
+        .grid-item {
+            align-self: center;
+        }
+
+        .grid-header,
+        .grid-row {
+            display: contents;
+            font-size: 15;
+        }
+
+        .header-item,
+        .row-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--opacity-6);
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-item {
+            background-color: var(--base-grey);
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .header-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 20px;
+            background: var(--opacity-6);
+        }
+
+        .row-item {
+            font-size: 15px;
+            font-weight: 100;
+            border-bottom-color: var(--border-color);
+        }
+
+        .row-checkbox {
+            height: auto;
+            width: auto;
+        }
+
+        /* Icon Styles */
+        .icon-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        .action-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Updated glow effect on hover */
+        .view-icon {
+            animation: glow 2s infinite ease-in-out, pulse 3.5s infinite;
+            cursor: pointer;
+        }
+
+        .grid-row.highlighted {
+            background-color: transparent;
+            /* Example for highlighting */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="access-bar">
+        <div class="access-bar-leftside">
+            <div class="logo">
+                <img src="img/Product Logo.png" alt="Product Logo">
+            </div>
+            <div class="section-menu-container">
+                <div class="section-menu active">
+                    <div class="accesstext1">Analysis</div>
+                </div>
+                <div class="section-menu">
+                    <div class="accesstext2" style="font-weight: 100;">Queue (1)</div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="window-controls">
+            <img src="img/windowbtn.png" alt="Window Controls">
+        </div> -->
+    </header>
+    <main class="main-content">
+        <h1 class="h1" style="padding-bottom: 20px;">Analysis</h1>
+        <section class="conte03">
+            <div class="analysis-grid">
+                <div class="grid-header">
+                    <div class="header-item">
+                        <input type="checkbox" id="select-all" onchange="toggleSelectAll(this)" />
+                    </div>
+                    <div class="header-item">ID</div>
+                    <div class="header-item">Mode</div>
+                    <div class="header-item">Patient ID</div>
+                    <div class="header-item">Patient Name</div>
+                    <div class="header-item">Sex</div>
+                    <div class="header-item">Date of Birth (Age)</div>
+                    <div class="header-item">AI Result</div>
+                    <div class="header-item">Scan Date (Age)</div>
+                    <div class="header-item">Action</div>
+                    <div class="header-item">Image Format</div>
+                    <div class="header-item">Status</div>
+                    <div class="header-item">Analysis Completed</div>
+                    <div class="header-item">Memo</div>
+                </div>
+                <!-- Example Rows -->
+                <div class="grid-row">
+                    <div class="row-item">
+                        <input type="checkbox" class="row-checkbox" />
+                    </div>
+                    <div class="row-item">03</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">00000003</div>
+                    <div class="row-item">김미영</div>
+                    <div class="row-item">Female</div>
+                    <div class="row-item">1962-01-15 (68)</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item">2022-07-25 (66)</div>
+                    <div class="row-item"><img src="img/icon_Edit.png" alt="Edit"></div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">In Queue</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="row-item">
+                        <input type="checkbox" class="row-checkbox" />
+                    </div>
+                    <div class="row-item">02</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">00000002</div>
+                    <div class="row-item">김철수</div>
+                    <div class="row-item">Male</div>
+                    <div class="row-item">1958-03-23 (66)</div>
+                    <div class="row-item">-</div>
+                    <div class="row-item">2021-08-22 (63)</div>
+                    <div class="row-item"><img src="img/icon_Edit.png" alt="Edit"></div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">
+                        <div class="progress progress-striped">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <!-- <div class="progress progress-striped active">
+                            <div role="progressbar" class="progress-bar progress-bar-default" style="width: 70%;">
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row-item">-</div>
+                    <div class="row-item"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="row-item">
+                        <input type="checkbox" class="row-checkbox" />
+                    </div>
+                    <div class="row-item">01</div>
+                    <div class="row-item"></div>
+                    <div class="row-item">00000001</div>
+                    <div class="row-item">김영희</div>
+                    <div class="row-item">Female</div>
+                    <div class="row-item">1962-01-15 (68)</div>
+                    <div class="row-item"><a style="color: red; font-weight: 900;">Suspected</a></div>
+                    <div class="row-item">2022-05-01 (66)</div>
+                    <div class="row-item">
+                        <div class="icon-container">
+                            <div class="action-icon view-icon" style="scale: 1.2;">
+                                <a href="viewer.html" onclick="transitionToPage(event, this.href)">
+                                    <img src="img/icon_Viewer.png" alt="view">
+                                </a>
+                            </div>
+                            <div class="action-icon export-icon">
+                                <img src="img/icon_export.png" alt="Export">
+                            </div>
+                            <div class="action-icon edit-icon">
+                                <img src="img/icon_Edit.png" alt="Edit">
+                            </div>
+                            <div class="action-icon delete-icon">
+                                <img src="img/icon_Delete.png" alt="Delete">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-item">DICOM</div>
+                    <div class="row-item">Completed</div>
+                    <div class="row-item">2024-01-01 10:52</div>
+                    <div class="row-item"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        console.log('Checkbox checked:', checkbox.checked); // Add debugging lines if needed
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectAllCheckbox = document.getElementById('select-all');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            selectAllCheckbox.addEventListener('change', function () {
+                toggleSelectAll(this);
+            });
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    toggleRowHighlight(this);
+                });
+            });
+        });
+
+        function toggleRowHighlight(checkbox) {
+            const row = checkbox.closest('.grid-row');
+            if (checkbox.checked) {
+                row.classList.add('highlighted');
+            } else {
+                row.classList.remove('highlighted');
+            }
+        }
+
+        function toggleSelectAll(masterCheckbox) {
+            const isChecked = masterCheckbox.checked;
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+                toggleRowHighlight(checkbox);
+            });
+        }
+
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            const overlay = document.getElementById('page-transition-overlay');
+            overlay.style.opacity = '1';
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+        function transitionToPage(event, url) {
+            event.preventDefault();
+            const overlay = document.getElementById('page-transition-overlay');
+            if (overlay) {
+                overlay.style.opacity = '1';
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            } else {
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+
+</html>

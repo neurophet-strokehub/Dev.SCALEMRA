@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="img/favicon.png" type="image/png" /> 
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>YUHS_SCALE MRA DEMO</title>
+    <Style>
+        :root {
+            --base-3: #282828;
+            --base-grey: #383838;
+            --white: #ffffff;
+            --ui-1: #1077fe;
+            --ui-6: #1e1e1e;
+            --opacity-6: rgba(255, 255, 255, 0.2);
+            --opacity-7: rgba(255, 255, 255, 0.1);
+            --opacity-8: rgba(255, 255, 255, 0.05);
+            --whitedisabled: rgba(255, 255, 255, 0.2);
+            --border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        html,
+        body {
+            color: var(--white);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Spoqa Han San', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .login {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: var(--base-3);
+        }
+
+        .form-container {
+            background: var(--base-grey);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            width: 100%;
+            height: fit-content;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            -ms-content-zoom-limit-max: ;
+            height: auto;
+        }
+
+
+        .button-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .button,
+        .button2,
+        .start-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 3px;
+            height: 40px;
+            min-width: 100px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            cursor: pointer;
+        }
+
+        .button {
+            background: var(--opacity-7);
+            border: 1px solid var(--opacity-8);
+            color: var(--whitedisabled);
+        }
+
+        .button2,
+        .start-button {
+            background: var(--ui-1);
+            color: var(--white);
+            width: 100%;
+        }
+
+        .button:hover,
+        .button2:hover,
+        .start-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .start-button:hover {
+            background: var(--white);
+            color: var(--ui-1);
+            font-weight: bolder;
+        }
+
+        .button:active,
+        .button2:active,
+        .start-button:active {
+            transform: translateY(1px);
+        }
+
+        .login-input-field,
+        .text-field {
+            color: white;
+            background: var(--ui-6);
+            border-radius: 2px;
+            border: 2px solid var(--border-color);
+            padding: 12px;
+            height: 40px;
+            min-width: 400px;
+        }
+
+        .text-field {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            width: 100%;
+        }
+
+        .text-field input {
+            width: 100%;
+            height: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            border: none;
+            outline: none;
+            background: none;
+            color: var(--white);
+        }
+
+        .text-field .placeholder {
+            color: var(--whitedisabled);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            flex-grow: 1;
+            min-width: 400px;
+        }
+    </Style>
+</head>
+
+<body>
+    <main class="login">
+        <div class="form-container">
+            <div class="logo-section">
+                <img src="img/Product Logo2.png" alt="Product Logo" style="transform: scale(1.2); margin: 1rem;">
+            </div>
+            <input type="password" class="login-input-field" placeholder="Password" id="passwordInput" />
+            <button class="start-button" onclick="togglePasswordVisibility()">Start</button>
+            <ul class="instructions">
+                <li>Do not share the password with any other authorized persons.</li>
+                <li>If you forget your password, contact a service representative.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput.value === '1111') {
+                document.body.style.opacity = '0';
+                setTimeout(() => window.location.href = 'main.html', 500);
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+
+</html>
