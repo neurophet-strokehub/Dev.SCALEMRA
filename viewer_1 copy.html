@@ -434,57 +434,89 @@
             }
         }
 
-        .dicom-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  height: 100vh; /* Full viewport height or adjust as needed */
+        .Rt-bottom {
+            flex: 9;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
+
+        /* .dicom-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dicom-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .dicom-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        .dicom-right-top,
+        .dicom-right-bottom {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dicom-left img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+             border: 1px solid rgba(255, 255, 255, 0.1);
+         }
+
+        .dicom-right-top img,
+        .dicom-right-bottom img {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+             border: 1px solid rgba(255, 255, 255, 0.1);
+         } */
+    
+         #dicom-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* 좌우 간격 */
 }
 
-.dicom-left {
-  width: 45%;  /* Adjust the width according to your design */
-  height: 100%;  /* Make sure it takes the full height */
-  overflow-y: scroll;  /* Enable vertical scrolling */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: #000; /* Optional: to make images stand out against the background */
-  padding: 10px;
-  box-sizing: border-box;
+#dicom-left {
+    width: 48%; /* 왼쪽 영역의 너비 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.dicom-right {
-  width: 50%; /* Adjust according to the right container's layout */
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+#dicom-right {
+    width: 48%; /* 오른쪽 영역의 너비 */
 }
 
-.dicom-sagittal {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#dicom-right-top, #dicom-right-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.dicom-left img {
-  width: 100%;
-  object-fit: contain; /* Keeps the aspect ratio of images */
-  margin-bottom: 10px; /* Space between images */
+#dicom-left img, #dicom-right img {
+    max-width: 100%;
+    height: auto;
+    margin: 5px;
 }
-
-.dicom-left::-webkit-scrollbar {
-  width: 8px;
-}
-
-.dicom-left::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-}
-
-.dicom-left::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 
     </style>
 </head>
@@ -623,74 +655,65 @@
 
 
             <div class="Rt-bottom">
-                <div class="dicom-container">
-                    <div class="dicom-left">
-                        <!-- Dynamically loaded images will go here -->
+                <div id="dicom-container">
+                    <div id="dicom-left">
+                        <!-- 왼쪽의 Axial 이미지들 -->
                     </div>
-                    <div class="dicom-right">
-                        <div class="dicom-sagittal">
-                            <!-- The sagittal view of DICOM images will go here -->
+                
+                    <div id="dicom-right">
+                        <div id="dicom-right-top">
+                            <!-- 오른쪽의 Coronal 이미지들 -->
+                        </div>
+                        <div id="dicom-right-bottom">
+                            <!-- 오른쪽의 Sagittal 이미지들 -->
                         </div>
                     </div>
                 </div>
-
+                
             </div>
     </main>
 
-    <script>
-        function toggleVisibility(button) {
-            const icon = button.querySelector('img');
-            const eyeOnSrc = 'src/img/eye-on.png';
-            const eyeOffSrc = 'src/img/eye-off.png';
+<script>
+window.onload = function() {
+    // 왼쪽 영역 (Axial 이미지들)
+    const dicomLeft = document.getElementById('dicom-left');
+    // 오른쪽 영역 (Coronal, Sagittal 이미지들)
+    const dicomRightTop = document.getElementById('dicom-right-top');
+    const dicomRightBottom = document.getElementById('dicom-right-bottom');
 
-            // 현재 아이콘의 src 속성을 가져옵니다.
-            const currentSrc = icon.getAttribute('src');
+    // 왼쪽의 Axial 이미지 경로 범위
+    for (let i = 220; i <= 250; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/axial/axial${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Axial ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomLeft.appendChild(img);
+    }
 
-            // 아이콘의 src 속성을 변경합니다.
-            if (currentSrc === eyeOnSrc) {
-                icon.setAttribute('src', eyeOffSrc);
-            } else {
-                icon.setAttribute('src', eyeOnSrc);
-            }
-        }
+    // 오른쪽의 Coronal 이미지 경로 범위
+    for (let i = 240; i <= 290; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/coronal/coronal${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Coronal ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomRightTop.appendChild(img);
+    }
 
-        function changeValue(button, delta) {
-            const valueInput = button.closest('.numeric-editor').querySelector('input');
-            let currentValue = parseInt(valueInput.value, 10);
-            currentValue += delta;
-            valueInput.value = currentValue;
-        }
-
-        function updateValue(input) {
-            // 입력된 값이 정수가 아닐 경우 0으로 설정
-            if (isNaN(parseInt(input.value, 10))) {
-                input.value = 0;
-            }
-        }
-    </script>
-    <script>
-// Assuming your images are named axial0001.png, axial0002.png, ..., axial0160.png
-const dicomLeft = document.querySelector('.dicom-left');
-
-// Function to load images dynamically
-function loadDicomImages() {
-  const totalImages = 160; // Total number of images (axial0001.png to axial0160.png)
-  for (let i = 1; i <= totalImages; i++) {
-    // Pad the image index with leading zeros to match the naming convention
-    const imageIndex = i.toString().padStart(4, '0');  // Pads to 4 digits
-    const img = document.createElement('img');
-    img.src = `src/img/dcm_01/axial/axial${imageIndex}.png`; // Path to your images
-    img.alt = `Dicom Image ${imageIndex}`; // Alt text for accessibility
-    dicomLeft.appendChild(img); // Add the image to the container
-  }
-}
-
-// Call the function to load images when the page is ready
-window.onload = loadDicomImages;
+    // 오른쪽의 Sagittal 이미지 경로 범위
+    for (let i = 220; i <= 250; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/sagittal/sagittal${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Sagittal ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomRightBottom.appendChild(img);
+    }
+};
 
 
-    </script>
-
+</script>
 </body>
 
 </html>

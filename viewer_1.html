@@ -444,7 +444,7 @@
             position: relative;
         }
 
-        .dicom-container {
+        /* .dicom-container {
             display: flex;
             width: 100%;
             height: 100%;
@@ -474,24 +474,50 @@
             justify-content: center;
         }
 
-        .dicom-left img,
-        .dicom-right-top img,
-        .dicom-right-bottom img {
-            width: 100%;
+        .dicom-left img {
+            width: 50%;
             height: 100%;
             object-fit: cover;
-            /* 이미지 비율 유지하며 공간 채움 */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* 이미지 구분 */
-        }
+             border: 1px solid rgba(255, 255, 255, 0.1);
+         }
 
-        #dicom-left-container img,
-        #dicom-right-container img {
-            width: 100%;
-            /* 원하는 비율로 크기 조정 */
-            height: auto;
-            /* 비율에 맞게 자동으로 높이 조정 */
-        }
+        .dicom-right-top img,
+        .dicom-right-bottom img {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+             border: 1px solid rgba(255, 255, 255, 0.1);
+         } */
+    
+         #dicom-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* 좌우 간격 */
+}
+
+#dicom-left {
+    width: 48%; /* 왼쪽 영역의 너비 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dicom-right {
+    width: 48%; /* 오른쪽 영역의 너비 */
+}
+
+#dicom-right-top, #dicom-right-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dicom-left img, #dicom-right img {
+    max-width: 100%;
+    height: auto;
+    margin: 5px;
+}
+
     </style>
 </head>
 
@@ -629,42 +655,65 @@
 
 
             <div class="Rt-bottom">
-                <div class="dicom-container">
-                    <!-- 왼쪽 영역 -->
-                    <div class="dicom-left" id="dicom-left-container">
-
-                        <!-- 이미지가 여기에 동적으로 추가됩니다 -->
+                <div id="dicom-container">
+                    <div id="dicom-left">
+                        <!-- 왼쪽의 Axial 이미지들 -->
                     </div>
-                    <!-- 오른쪽 영역 -->
-                    <div class="dicom-right">
-                        <div class="dicom-right-top" id="dicom-right-top-container">
-
+                
+                    <div id="dicom-right">
+                        <div id="dicom-right-top">
+                            <!-- 오른쪽의 Coronal 이미지들 -->
+                        </div>
+                        <div id="dicom-right-bottom">
+                            <!-- 오른쪽의 Sagittal 이미지들 -->
                         </div>
                     </div>
                 </div>
-
+                
             </div>
     </main>
 
-    <script>
-        const folderPath = "src/img/dcm_01/axial/"; // 이미지 폴더 경로
-        const startIndex = 1;  // 시작 번호
-        const endIndex = 100;  // 끝 번호
+<script>
+window.onload = function() {
+    // 왼쪽 영역 (Axial 이미지들)
+    const dicomLeft = document.getElementById('dicom-left');
+    // 오른쪽 영역 (Coronal, Sagittal 이미지들)
+    const dicomRightTop = document.getElementById('dicom-right-top');
+    const dicomRightBottom = document.getElementById('dicom-right-bottom');
 
-        const container = document.getElementById("dicom-left-container");
+    // 왼쪽의 Axial 이미지 경로 범위
+    for (let i = 220; i <= 250; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/axial/axial${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Axial ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomLeft.appendChild(img);
+    }
 
-        for (let i = startIndex; i <= endIndex; i++) {
-            const imgElement = document.createElement("img");
-            // 이미지 파일 이름 생성 (예: axial0001.png, axial0002.png, ...)
-            imgElement.src = `${folderPath}axial${i.toString().padStart(4, '0')}.png`;
-            imgElement.alt = `axial${i}`;
-            imgElement.style.margin = "1px";  // 필요 시 스타일 추가
-            imgElement.style.width = "50%";  // 크기 조정
+    // 오른쪽의 Coronal 이미지 경로 범위
+    for (let i = 240; i <= 290; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/coronal/coronal${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Coronal ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomRightTop.appendChild(img);
+    }
 
-            imgElement.style.height = "99%";  // 크기 조정
-            container.appendChild(imgElement);
-        }
-    </script>
+    // 오른쪽의 Sagittal 이미지 경로 범위
+    for (let i = 220; i <= 250; i++) {
+        const img = document.createElement('img');
+        img.src = `src/img/dcm_01/sagittal/sagittal${i.toString().padStart(4, '0')}.png`;
+        img.alt = `Sagittal ${i}`;
+        img.style.width = '100%';  // 부모에 맞게 크기 조정
+        img.style.height = 'auto'; // 비율 유지
+        dicomRightBottom.appendChild(img);
+    }
+};
+
+
+</script>
 </body>
 
 </html>
