@@ -25,7 +25,6 @@
             justify-content: flex-start;
             flex-shrink: 0;
             width: 35rem;
-            /* 적절한 너비로 조정하세요 */
             font-size: 14px;
         }
 
@@ -159,17 +158,6 @@
             /* 자식 요소를 절대 위치로 배치할 수 있게 합니다. */
         }
 
-        .Rt-bottom img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            /* 가로 길이를 100%로 설정하여 컨테이너에 맞게 확장합니다. */
-            height: 100%;
-            /* 세로 길이를 100%로 설정하여 컨테이너에 맞게 확장합니다. */
-            object-fit: cover;
-            /* 이미지의 비율을 유지하면서 가로와 세로를 채웁니다. */
-        }
 
         .left-top {
             flex: 7;
@@ -181,11 +169,6 @@
             flex: 3;
             background-color: #383838;
             padding: 1rem;
-        }
-
-        .main-rightviewer {
-            flex: 7.5;
-            background-color: #383838;
         }
 
         .h1 {
@@ -434,90 +417,87 @@
             }
         }
 
-        .Rt-bottom {
-            flex: 9;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            position: relative;
+        .dicom-section::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
         }
 
-        /* .dicom-container {
+        .dicom-section {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
+
+        .dicom-section::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+        }
+
+
+        #dicom-container {
+            flex: 1;
             display: flex;
-            width: 100%;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            gap: 1rem;
+        }
+
+        .dicom-section img {
+            height: auto;
+            display: block;
+            scale: 0.95;
+        }
+
+        #dicom-left {
+            flex: 1;
             height: 100%;
+            min-width: 55%;
         }
 
-        .dicom-left {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px;
-        }
-
-        .dicom-right {
-            flex: 1;
+        #dicom-right {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 5px;
-        }
-
-        .dicom-right-top,
-        .dicom-right-bottom {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dicom-left img {
-            width: 50%;
             height: 100%;
-            object-fit: cover;
-             border: 1px solid rgba(255, 255, 255, 0.1);
-         }
+        }
 
-        .dicom-right-top img,
-        .dicom-right-bottom img {
-            width: 50%;
-            height: 50%;
-            object-fit: cover;
-             border: 1px solid rgba(255, 255, 255, 0.1);
-         } */
-    
-         #dicom-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; /* 좌우 간격 */
-}
+        #dicom-right-top {
+            flex: 0 0 auto;
+            margin-bottom: 100px;
+            /* coronal과 sagittal 사이 간격 조정 */
+        }
 
-#dicom-left {
-    width: 48%; /* 왼쪽 영역의 너비 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .section-label {
+            color: #ffffff;
+            background: #282828;
+            padding: 0.5rem 1rem;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-#dicom-right {
-    width: 48%; /* 오른쪽 영역의 너비 */
-}
+        .dicom-section {
+            display: flex;
+            flex-direction: column;
+        }
 
-#dicom-right-top, #dicom-right-bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .dicom-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+        }
 
-#dicom-left img, #dicom-right img {
-    max-width: 100%;
-    height: auto;
-    margin: 5px;
-}
+        @media (max-width: 768px) {
+            #dicom-container {
+                flex-direction: column;
+            }
 
+            #dicom-left,
+            #dicom-right {
+                height: 50%;
+            }
+        }
     </style>
 </head>
 
@@ -647,73 +627,91 @@
                             <label onclick="window.location.href='viewer_1_pdf.html'">
                                 <input id="radio2" type="radio" name="radio-group" />
                                 <span class="radio-label "><img src="src/img/icon_Reports.png"
-                                        style="margin-right: 1rem; ">Report</span></ </label>
+                                        style="margin-right: 1rem; ">Report</span> </label>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div class="Rt-bottom">
                 <div id="dicom-container">
-                    <div id="dicom-left">
-                        <!-- 왼쪽의 Axial 이미지들 -->
+                    <div id="dicom-left" class="dicom-section">
+                        <span class="section-label">Axial</span>
+
+                        <!-- Axial 이미지들 -->
                     </div>
-                
                     <div id="dicom-right">
-                        <div id="dicom-right-top">
-                            <!-- 오른쪽의 Coronal 이미지들 -->
+                        <div id="dicom-right-top" class="dicom-section">
+                            <span class="section-label">Coronal</span>
+                            <!-- Coronal 이미지들 -->
                         </div>
-                        <div id="dicom-right-bottom">
-                            <!-- 오른쪽의 Sagittal 이미지들 -->
+                        <div id="dicom-right-bottom" class="dicom-section">
+                            <span class="section-label">Sagittal</span>
+
+                            <!-- Sagittal 이미지들 -->
                         </div>
                     </div>
                 </div>
-                
             </div>
     </main>
 
-<script>
-window.onload = function() {
-    // 왼쪽 영역 (Axial 이미지들)
-    const dicomLeft = document.getElementById('dicom-left');
-    // 오른쪽 영역 (Coronal, Sagittal 이미지들)
-    const dicomRightTop = document.getElementById('dicom-right-top');
-    const dicomRightBottom = document.getElementById('dicom-right-bottom');
+    <script>
+        window.onload = function () {
+            const dicomLeft = document.getElementById('dicom-left');
+            const dicomRightTop = document.getElementById('dicom-right-top');
+            const dicomRightBottom = document.getElementById('dicom-right-bottom');
 
-    // 왼쪽의 Axial 이미지 경로 범위
-    for (let i = 1; i <= 36; i++) {
-        const img = document.createElement('img');
-        img.src = `src/img/dcm_01/axial/axial${i.toString().padStart(4, '0')}.png`;
-        img.alt = `Axial ${i}`;
-        img.style.width = '50%';  // 부모에 맞게 크기 조정
-        img.style.height = 'auto'; // 비율 유지
-        dicomLeft.appendChild(img);
-    }
+            // 이미지 로드 함수
+            function loadImages(container, prefix, start, end, padLength) {
+                const images = [];
+                for (let i = start; i <= end; i++) {
+                    const img = document.createElement('img');
+                    img.src = `src/img/dcm_01/${prefix}/${prefix}${i.toString().padStart(padLength, '0')}.png`;
+                    img.alt = `${prefix} ${i}`;
+                    img.style.display = 'none';  // 초기에 모든 이미지 숨김
+                    container.appendChild(img);
+                    images.push(img);
+                }
+                return images;
+            }
 
-    // 오른쪽의 Coronal 이미지 경로 범위
-    for (let i = 240; i <= 290; i++) {
-        const img = document.createElement('img');
-        img.src = `src/img/dcm_01/coronal/coronal${i.toString().padStart(4, '0')}.png`;
-        img.alt = `Coronal ${i}`;
-        img.style.width = '50%';  // 부모에 맞게 크기 조정
-        img.style.height = 'auto'; // 비율 유지
-        dicomRightTop.appendChild(img);
-    }
+            // 이미지 표시 함수
+            function showImage(images, index) {
+                images.forEach((img, i) => {
+                    img.style.display = i === index ? 'block' : 'none';
+                });
+            }
 
-    // 오른쪽의 Sagittal 이미지 경로 범위
-    for (let i = 220; i <= 250; i++) {
-        const img = document.createElement('img');
-        img.src = `src/img/dcm_01/sagittal/sagittal${i.toString().padStart(4, '0')}.png`;
-        img.alt = `Sagittal ${i}`;
-        img.style.width = '50%';  // 부모에 맞게 크기 조정
-        img.style.height = 'auto'; // 비율 유지
-        dicomRightBottom.appendChild(img);
-    }
-};
+            // 이미지 로드
+            const axialImages = loadImages(dicomLeft, 'axial', 1, 80, 4);
+            const coronalImages = loadImages(dicomRightTop, 'coronal', 240, 290, 4);
+            const sagittalImages = loadImages(dicomRightBottom, 'sagittal', 220, 250, 4);
 
+            // 초기 이미지 표시
+            showImage(axialImages, 0);
+            showImage(coronalImages, 0);
+            showImage(sagittalImages, 0);
 
-</script>
+            // 스크롤 이벤트 처리
+            function handleScroll(images, container, currentIndex) {
+                let index = currentIndex;
+
+                container.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    if (e.deltaY > 0 && index < images.length - 1) {
+                        index++;
+                    } else if (e.deltaY < 0 && index > 0) {
+                        index--;
+                    }
+                    showImage(images, index);
+                });
+            }
+
+            // 스크롤 이벤트 리스너 추가
+            handleScroll(axialImages, dicomLeft, 0);
+            handleScroll(coronalImages, dicomRightTop, 0);
+            handleScroll(sagittalImages, dicomRightBottom, 0);
+        };
+    </script>
 </body>
 
 </html>
