@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
+	<link rel="icon" href="src/img/ICON_TAB.png" />
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Preview</title>
+	<title>SCALE MRA_DEMO</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<style>
 		html,
@@ -131,7 +133,7 @@
 
 		.svg-highlight {
 			margin-top: .5rem;
-			scale: 2;
+			scale: 1.8;
 			color: white;
 			/* 보라색 */
 			background-color: rgba(155, 89, 182, 0.1);
@@ -147,7 +149,7 @@
 			animation: sparkle 1.5s infinite;
 			/* 반짝이는 애니메이션 */
 		}
-		
+
 		.svg-highlight1 {
 			margin-top: .5rem;
 			scale: 2;
@@ -162,7 +164,7 @@
 			box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
 			/* 보라색 그림자 */
 			transition: all 0.3s ease;
-			/* 애니메이션 효과 */ 
+			/* 애니메이션 효과 */
 		}
 
 		.svg-highlight:hover {
@@ -180,7 +182,7 @@
 
 		@keyframes sparkle {
 			0% {
-				box-shadow: 0 0 8px red;
+				box-shadow: 0 0 8px rgb(255, 255, 255);
 				/* 기본 보라색 그림자 */
 				transform: scale(1);
 				/* 기본 크기 */
@@ -330,18 +332,20 @@
 					<div class="data-item scan-date">2022-07-25</div>
 					<div class="data-item action">
 						<a href="prototype.html" target="_blank" class="svg-link">
-							
+
 							<div
 								class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
-								<svg width="16" height="17" viewBox="0 0 16 17" fill="none" 
-								xmlns="http://www.w3.org/2000/svg"
-								class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight1"
-								preserveAspectRatio="xMidYMid meet">
+								<svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight1"
+									preserveAspectRatio="xMidYMid meet">
 
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 3H9.5V4.5H6.5V3ZM5.5 4.5V3V2H6.5H9.5H10.5V3V4.5H12.5H13.5H14.5V5.5H13.5V14V15H12.5H3.5H2.5V14V5.5H1.5V4.5H2.5H3.5H5.5ZM3.5 5.5V14H12.5V5.5H10.5H9.5H6.5H5.5H3.5ZM6 6.5V13H5V6.5H6ZM7.5 6.5H8.5V13H7.5V6.5ZM10 6.5V13H11V6.5H10Z" fill="white" fill-opacity="0.9"/>
-									</svg>
-									
-									
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M6.5 3H9.5V4.5H6.5V3ZM5.5 4.5V3V2H6.5H9.5H10.5V3V4.5H12.5H13.5H14.5V5.5H13.5V14V15H12.5H3.5H2.5V14V5.5H1.5V4.5H2.5H3.5H5.5ZM3.5 5.5V14H12.5V5.5H10.5H9.5H6.5H5.5H3.5ZM6 6.5V13H5V6.5H6ZM7.5 6.5H8.5V13H7.5V6.5ZM10 6.5V13H11V6.5H10Z"
+										fill="white" fill-opacity="0.9" />
+								</svg>
+
+
 							</div>
 						</a>
 					</div>
@@ -360,14 +364,18 @@
 					<div class="data-item mode">
 						<img src="src/img/research.svg">
 					</div>
-					<div class="data-item patient-id">240000000001</div>
-					<div class="data-item patient-name">DEMO_시연용 </div>
-					<div class="data-item sex">Female</div>
-					<div class="data-item dob">1962-01-15 (68)</div>
+					<div class="data-item patient-id">202111220000001
+					</div>
+					<div class="data-item patient-name">PT00001
+					</div>
+					<div class="data-item sex">Male</div>
+					<div class="data-item dob">1980-01-01 (45)
+					</div>
 					<div class="data-item aneurysm" data-status="Suspected">
 						Suspected
 					</div>
-					<div class="data-item scan-date">2022-07-25</div>
+					<div class="data-item scan-date">2023-01-10 (44)
+					</div>
 					<div class="data-item action">
 						<a href="viewer_3.html" target="_blank" class="svg-link">
 							<div
@@ -388,7 +396,7 @@
 					<div class="data-item image-format">DICOM</div>
 					<div class="data-item status">Completed</div>
 					<div class="data-item completed">2024-01-01 10:52</div>
-					<div class="data-item memo">test</div>
+					<div class="data-item memo">Suspected 3ea					</div>
 				</div>
 
 			</div>
@@ -421,6 +429,7 @@
 
 		// Call the function to set up the event listener
 		handleSingleRowCheckbox();
+
 	</script>
 </body>
 
