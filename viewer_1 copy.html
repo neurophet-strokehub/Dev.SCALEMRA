@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="src/img/ICON_TAB.png" />
+    <title>SCALE MRA_DEMO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .radio-wrapper {
+            box-sizing: border-box;
+            height: 100%;
+        }
+
+        .radio-inputs {
+            background: rgba(255, 255, 255, 0.10);
+            border-radius: 2px;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            /* 간격 조정 */
+            align-items: center;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            width: 35rem;
+            /* 적절한 너비로 조정하세요 */
+            font-size: 14px;
+        }
+
+        .radio-inputs label {
+            flex: 1;
+            text-align: center;
+
+        }
+
+        .radio-inputs label input {
+            display: none;
+        }
+
+        .radio-label {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+            padding: 10px 20px;
+            color: rgba(255, 255, 255, 0.90);
+            /* 스위치와 일치하는 색상 */
+            transition: all 0.15s ease-in-out;
+        }
+
+        .radio-inputs label input:checked+.radio-label {
+            background-color: rgba(255, 255, 255, 0.20);
+            /* 선택된 상태 색상 */
+            font-weight: 600;
+        }
+
+        .common-heading,
+        .common-subheading,
+        .common-detail {
+            color: white;
+            font-family: 'SpoqaHanSansNeo-Regular', sans-serif;
+        }
+
+        .common-heading {
+            color: rgba(255, 255, 255, 0.90);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .common-subheading {
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .common-detail {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* 레이아웃 및 기본 스타일 */
+        html,
+        body {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            font-family: 'Spoqa Han San', sans-serif;
+        }
+
+        .header {
+            position: fixed;
+            display: flex;
+            top: 0;
+            width: 100%;
+            height: 48px;
+            padding: 0 20px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #282828;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        main {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 48px);
+            margin-top: 48px;
+        }
+
+        .main-leftpannel,
+        .main-Rt {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .main-leftpannel {
+            flex: 2.5;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            gap: 5px;
+        }
+
+        .main-Rt {
+            flex: 7.5;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            gap: 5px;
+        }
+
+        .Rt-top {
+            flex: .5;
+            background-color: black;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-self: stretch;
+            display: flex;
+        }
+
+        .Rt-bottom {
+            flex: 9;
+            background-color: black;
+            padding: 0;
+            /* 패딩을 제거하여 이미지가 화면 하단까지 차지하게 합니다. */
+            position: relative;
+            /* 자식 요소를 절대 위치로 배치할 수 있게 합니다. */
+        }
+
+        .Rt-bottom img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* 가로 길이를 100%로 설정하여 컨테이너에 맞게 확장합니다. */
+            height: 100%;
+            /* 세로 길이를 100%로 설정하여 컨테이너에 맞게 확장합니다. */
+            object-fit: cover;
+            /* 이미지의 비율을 유지하면서 가로와 세로를 채웁니다. */
+        }
+
+        .left-top {
+            flex: 7;
+            background-color: #383838;
+            padding: 1rem;
+        }
+
+        .left-bottom {
+            flex: 3;
+            background-color: #383838;
+            padding: 1rem;
+        }
+
+        .main-rightviewer {
+            flex: 7.5;
+            background-color: #383838;
+        }
+
+        .h1 {
+            color: #FFF;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 140%;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 50px;
+                padding: 0 10px;
+            }
+
+            .h1 {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                height: 40px;
+                padding: 0 5px;
+            }
+
+            .h1 {
+                font-size: 14px;
+            }
+        }
+
+        .win {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+        }
+
+        .win i {
+            color: #FFF;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .frame {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .divider {
+            background: rgba(255, 255, 255, 0.20);
+            height: 1px;
+            align-self: stretch;
+            margin: 1rem 0;
+        }
+
+        .button {
+            background: rgba(255, 255, 255, 0.40);
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            min-width: 40px;
+            margin-top: 2rem;
+        }
+
+        .button-text {
+            color: #ffffff;
+            font-family: 'SpoqaHanSansNeo-Bold', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .button-reset {
+            border-radius: 3px;
+            border-style: solid;
+            border-color: var(--opacity-3, rgba(255, 255, 255, 0.60));
+            border-width: 1px;
+            padding: 6px 10px 6px 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            height: 32px;
+            min-width: 40px;
+            position: relative;
+        }
+
+        .icon-reset {
+            font-size: 11px;
+            color: white;
+            margin-right: 6px;
+        }
+
+        .text {
+            color: #ffffff;
+            font-family: 'SpoqaHanSansNeo-Bold', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .visibility {
+            padding-bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: left;
+            justify-content: space-between;
+            /* 왼쪽과 오른쪽으로 정렬합니다. */
+        }
+
+        .info {
+            flex: 8;
+            display: flex;
+
+        }
+
+        .numeric-editor {
+            flex: 2
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            /* 내용과 숫자 편집기 사이의 간격을 조정합니다. */
+        }
+
+        .numeric-editor {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            /* 버튼과 입력 필드 사이의 간격을 조절합니다. */
+        }
+
+        .editor-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin: 0 2px;
+            /* 버튼과 입력 필드 사이의 간격 조절 */
+        }
+
+        .editor-btn i {
+            font-size: 16px;
+            /* 아이콘 크기 조정 */
+            color: white;
+        }
+
+        .value {
+            font-size: 14px;
+            color: white;
+            width: 50px;
+            /* 인풋 필드 크기 조정 */
+            text-align: right;
+            /* 숫자를 오른쪽으로 정렬합니다. */
+        }
+
+        .value input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.60);
+            color: white;
+            font-size: 14px;
+            text-align: right;
+            /* 숫자를 오른쪽으로 정렬합니다. */
+        }
+
+        .svg-highlight {
+            color: white;
+            /* 보라색 */
+            background-color: rgba(155, 89, 182, 0.1);
+            /* 보라색 배경색 */
+            border-radius: 4px;
+            /* 둥근 모서리 */
+            padding: 4px;
+            /* 아이콘 주변 여백 */
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+            /* 보라색 그림자 */
+            transition: all 0.5s ease;
+            /* 애니메이션 효과 */
+            animation: sparkle 1.5s infinite;
+            /* 반짝이는 애니메이션 */
+        }
+
+        .svg-highlight:hover {
+            color: red;
+            /* 마우스 오버 시 색상 변화 */
+            background-color: rgba(241, 238, 238, 0.2);
+            /* 마우스 오버 시 배경색 변화 */
+            transform: scale(1.5);
+            /* 크기 증가 */
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+            /* 보라색 그림자 강화 */
+            animation: sparkle 1s infinite;
+            /* 마우스 오버 시 반짝이는 애니메이션 속도 변경 */
+        }
+
+        @keyframes sparkle {
+            0% {
+                box-shadow: 0 0 8px red;
+                /* 기본 보라색 그림자 */
+                transform: scale(1);
+                /* 기본 크기 */
+            }
+
+            50% {
+                box-shadow: 0 0 16px red;
+                /* 강화된 보라색 그림자 */
+                transform: scale(1.1);
+                /* 약간의 확대 */
+            }
+
+            100% {
+                box-shadow: 0 0 8px red;
+                /* 기본 보라색 그림자 */
+                transform: scale(1);
+                /* 기본 크기 */
+            }
+        }
+
+        .dicom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100vh; /* Full viewport height or adjust as needed */
+}
+
+.dicom-left {
+  width: 45%;  /* Adjust the width according to your design */
+  height: 100%;  /* Make sure it takes the full height */
+  overflow-y: scroll;  /* Enable vertical scrolling */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000; /* Optional: to make images stand out against the background */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.dicom-right {
+  width: 50%; /* Adjust according to the right container's layout */
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dicom-sagittal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dicom-left img {
+  width: 100%;
+  object-fit: contain; /* Keeps the aspect ratio of images */
+  margin-bottom: 10px; /* Space between images */
+}
+
+.dicom-left::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dicom-left::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.dicom-left::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="h1">Analysis Viewer</h1>
+        <div class="win svg-highlight" style="width: 50px;">
+            <a href="prototype.html">
+                <i class="fas fa-arrow-left"> </i>
+            </a>
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main>
+        <div class="main-leftpannel">
+            <div class="left-top">
+                <!-- 왼쪽 패널 상단 내용 -->
+                <div class="frame">
+                    <div class="common-heading">Patient Demographics</div>
+                    <div class="frame">
+                        <div class="patient-id">
+                            <div class="common-subheading">Patient ID</div>
+                            <div class="common-detail">202111220000002
+
+                            </div>
+                        </div>
+                        <div class="patient-name">
+                            <div class="common-subheading">Patient Name</div>
+                            <div class="common-detail">PT00002
+                            </div>
+                        </div>
+                        <div class="date-of-birth-age">
+                            <div class="common-subheading">Date of Birth (Age)</div>
+                            <div class="common-detail">1970-01-01 (55)
+                            </div>
+                        </div>
+                        <div class="sex">
+                            <div class="common-subheading">Sex</div>
+                            <div class="common-detail">Female</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="frame">
+                    <div class="common-heading">Image Information</div>
+                    <div class="frame">
+                        <div class="scan-date-age">
+                            <div class="common-subheading">Scan Date (Age)</div>
+                            <div class="common-detail">2014-07-23 (45)
+                            </div>
+                        </div>
+                        <div class="memo">
+                            <div class="common-subheading">Memo</div>
+                            <div class="common-detail">Aneurysms Suspected: 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="frame">
+                    <div class="common-heading">Summary</div>
+                    <div class="frame">
+                        <div class="aneurysm-suspected">
+                            <div class="common-subheading">Aneurysm Suspected</div>
+                            <div class="common-detail">1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button" style="width:100%;">
+                    <div class="button-text">View Details</div>
+                </div>
+            </div>
+            <!-- 좌패널하단내용 -->
+            <div class="left-bottom">
+                <!-- 왼쪽 패널 하단 내용 -->
+                <div class="frame">
+                    <div class="common-heading">Visualization</div>
+                    <div class="button-reset">
+                        <i class="fas fa-sync-alt icon-reset"></i>
+                        <div class="text">Reset</div>
+                    </div>
+                </div>
+
+                <!-- 뇌동맥류 -->
+                <div class="container">
+                    <div class="visibility">
+                        <div class="info">
+                            <button class="toggle-btn" onclick="toggleVisibility(this)">
+                                <img src="src/img/eye-on.png" alt="Eye On" class="icon" />
+                            </button>
+                            <img src="src/img/all_color.png" style="margin-right: .5rem;">
+                            <div class="common-heading">#Aneurysm1</div>
+                        </div>
+                        <div class="numeric-editor">
+                            <button class="editor-btn" onclick="changeValue(this, -1)">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="value">
+                                <input type="number" value="70" onchange="updateValue(this)" />
+                            </div>
+                            <button class="editor-btn" onclick="changeValue(this, 1)">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 추가 레이어들 -->
+            </div>
+        </div>
+        </div>
+        <!-- 오른쪽 뷰어 내용 -->
+        <div class="main-Rt">
+            <div class="Rt-top" style="background-color: #383838;">
+                <div class="frame" style="background-color: #383838;">
+                    <div class="radio-wrapper">
+                        <div class="radio-inputs">
+                            <label onclick="window.location.href='viewer_1.html'">
+                                <input id="radio1" type="radio" name="radio-group" checked />
+                                <span class="radio-label"><img src="src/img/icon_Viewer.png"
+                                        style="margin-right: 1rem;">Image</span>
+                            </label>
+                            <label onclick="window.location.href='viewer_1_pdf.html'">
+                                <input id="radio2" type="radio" name="radio-group" />
+                                <span class="radio-label "><img src="src/img/icon_Reports.png"
+                                        style="margin-right: 1rem; ">Report</span></ </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="Rt-bottom">
+                <div class="dicom-container">
+                    <div class="dicom-left">
+                        <!-- Dynamically loaded images will go here -->
+                    </div>
+                    <div class="dicom-right">
+                        <div class="dicom-sagittal">
+                            <!-- The sagittal view of DICOM images will go here -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </main>
+
+    <script>
+        function toggleVisibility(button) {
+            const icon = button.querySelector('img');
+            const eyeOnSrc = 'src/img/eye-on.png';
+            const eyeOffSrc = 'src/img/eye-off.png';
+
+            // 현재 아이콘의 src 속성을 가져옵니다.
+            const currentSrc = icon.getAttribute('src');
+
+            // 아이콘의 src 속성을 변경합니다.
+            if (currentSrc === eyeOnSrc) {
+                icon.setAttribute('src', eyeOffSrc);
+            } else {
+                icon.setAttribute('src', eyeOnSrc);
+            }
+        }
+
+        function changeValue(button, delta) {
+            const valueInput = button.closest('.numeric-editor').querySelector('input');
+            let currentValue = parseInt(valueInput.value, 10);
+            currentValue += delta;
+            valueInput.value = currentValue;
+        }
+
+        function updateValue(input) {
+            // 입력된 값이 정수가 아닐 경우 0으로 설정
+            if (isNaN(parseInt(input.value, 10))) {
+                input.value = 0;
+            }
+        }
+    </script>
+    <script>
+// Assuming your images are named axial0001.png, axial0002.png, ..., axial0160.png
+const dicomLeft = document.querySelector('.dicom-left');
+
+// Function to load images dynamically
+function loadDicomImages() {
+  const totalImages = 160; // Total number of images (axial0001.png to axial0160.png)
+  for (let i = 1; i <= totalImages; i++) {
+    // Pad the image index with leading zeros to match the naming convention
+    const imageIndex = i.toString().padStart(4, '0');  // Pads to 4 digits
+    const img = document.createElement('img');
+    img.src = `src/img/dcm_01/axial/axial${imageIndex}.png`; // Path to your images
+    img.alt = `Dicom Image ${imageIndex}`; // Alt text for accessibility
+    dicomLeft.appendChild(img); // Add the image to the container
+  }
+}
+
+// Call the function to load images when the page is ready
+window.onload = loadDicomImages;
+
+
+    </script>
+
+</body>
+
+</html>
