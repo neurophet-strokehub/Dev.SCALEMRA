@@ -484,6 +484,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             /* 이미지 구분 */
         }
+
+        #dicom-left-container img,
+        #dicom-right-container img {
+            width: 100%;
+            /* 원하는 비율로 크기 조정 */
+            height: auto;
+            /* 비율에 맞게 자동으로 높이 조정 */
+        }
     </style>
 </head>
 
@@ -641,28 +649,9 @@
     <script>
         const folderPath = "src/img/dcm_01/axial/"; // 이미지 폴더 경로
         const startIndex = 1;  // 시작 번호
-        const endIndex = 70;  // 끝 번호
+        const endIndex = 100;  // 끝 번호
 
         const container = document.getElementById("dicom-left-container");
-
-        for (let i = startIndex; i <= endIndex; i++) {
-            const imgElement = document.createElement("img");
-            // 이미지 파일 이름 생성 (예: axial0001.png, axial0002.png, ...)
-            imgElement.src = `${folderPath}axial${i.toString().padStart(4, '0')}.png`;
-            imgElement.alt = `axial${i}`;
-            imgElement.style.margin = "1px";  // 필요 시 스타일 추가
-            imgElement.style.width = "50%";  // 크기 조정
-
-            imgElement.style.height = "99%";  // 크기 조정
-            container.appendChild(imgElement);
-        }
-    </script>
-    <script>
-        const folderPath = "src/img/dcm_01/axial/"; // 이미지 폴더 경로
-        const startIndex = 1;  // 시작 번호
-        const endIndex = 70;  // 끝 번호
-
-        const container = document.getElementById("dicom-right-container");
 
         for (let i = startIndex; i <= endIndex; i++) {
             const imgElement = document.createElement("img");
